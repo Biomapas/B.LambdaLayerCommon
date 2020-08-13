@@ -1,0 +1,2 @@
+include LICENSE
+recursive-include b_lambda_layer_common *.py
