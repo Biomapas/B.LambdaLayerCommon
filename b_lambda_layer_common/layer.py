@@ -15,7 +15,6 @@ class Layer(LayerVersion):
             id=name,
             code=Code.from_asset(root),
             compatible_runtimes=self.runtimes(),
-            description=self.description(),
             layer_version_name=name,
         )
 

@@ -1,5 +1,8 @@
 # Release history
 
+### 0.0.5
+Remove description.
+
 ### 0.0.4
 Do not create an extra stack.
 
