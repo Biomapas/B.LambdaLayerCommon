@@ -20,6 +20,13 @@ class LayerSingleton:
             raise Exception('Instance is already initialized.')
 
     @staticmethod
+    def safe_initialize(scope: Stack, name: str):
+        if not LayerSingleton.__instance:
+            LayerSingleton.__lock = False
+            LayerSingleton.__instance = LayerSingleton(scope, name)
+            LayerSingleton.__lock = True
+
+    @staticmethod
     def get_instance() -> 'LayerSingleton':
         if LayerSingleton.__instance is None:
             raise Exception('Instance is not initialized. Call initialize method.')
@@ -36,8 +43,7 @@ class LayerSingleton:
         if LayerSingleton.__lock:
             raise Exception('You are not allowed to call constructor. Call get_instance method.')
 
-        self.__scope = Stack(scope, f'{name}Stack', stack_name=f'{name}Stack')
-        self.__layer = Layer(self.__scope, name)
+        self.__layer = Layer(scope, name)
 
     @property
     def layer(self) -> Layer:
