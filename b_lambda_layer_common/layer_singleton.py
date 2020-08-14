@@ -11,8 +11,12 @@ class LayerSingleton:
     __lock: bool = True
 
     @staticmethod
+    def is_initialized() -> bool:
+        return bool(LayerSingleton.__instance)
+
+    @staticmethod
     def initialize(scope: Stack, name: str):
-        if not LayerSingleton.__instance:
+        if not LayerSingleton.is_initialized():
             LayerSingleton.__lock = False
             LayerSingleton.__instance = LayerSingleton(scope, name)
             LayerSingleton.__lock = True
@@ -21,7 +25,7 @@ class LayerSingleton:
 
     @staticmethod
     def safe_initialize(scope: Stack, name: str):
-        if not LayerSingleton.__instance:
+        if not LayerSingleton.is_initialized():
             LayerSingleton.__lock = False
             LayerSingleton.__instance = LayerSingleton(scope, name)
             LayerSingleton.__lock = True

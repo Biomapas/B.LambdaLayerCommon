@@ -1,5 +1,8 @@
 # Release history
 
+### 0.0.6
+Add ability to check whether singleton was initialized.
+
 ### 0.0.5
 Remove description.
 
