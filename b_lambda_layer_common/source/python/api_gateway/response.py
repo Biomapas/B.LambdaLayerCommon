@@ -1,9 +1,16 @@
 import json
+import logging
 from typing import Optional, Dict, Any
 
+logger = logging.getLogger(__file__)
+
 try:
-    from response_headers import ResponseHeaders
-except ImportError:
+    # Lambda specific imports.
+    from api_gateway.response_headers import ResponseHeaders
+except ImportError as ex:
+    logger.warning(f'Unable to import: {repr(ex)}.')
+
+    # Project specific imports.
     from b_lambda_layer_common.source.python.api_gateway.response_headers import ResponseHeaders
 
 
