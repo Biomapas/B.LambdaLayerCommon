@@ -15,7 +15,7 @@ class Url:
             return (
                 f'https://'
                 f'{event["requestContext"]["domainName"]}/'
-                f'{event["requestContext"]["path"]}'
+                f'{event["requestContext"]["stage"]}'
             )
         except KeyError as ex:
             raise ValueError(f'Can not construct API url from event. Missing keyword: {ex}.')

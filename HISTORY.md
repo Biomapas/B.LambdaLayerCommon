@@ -1,5 +1,8 @@
 # Release history
 
+### 0.0.9
+Fix api gateway url.
+
 ### 0.0.8
 Add xml to dict converter utility. No dependencies.
 

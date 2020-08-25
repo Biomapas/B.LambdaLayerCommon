@@ -1,0 +1,90 @@
+{
+    "version": "1.0",
+    "resource": "/dummy/permission/validate",
+    "path": "/stage/dummy/permission/validate",
+    "httpMethod": "POST",
+    "headers": {
+        "Content-Length": "54",
+        "Content-Type": "application/json",
+        "Host": "awsid.execute-api.eu-central-1.amazonaws.com",
+        "Postman-Token": "Token",
+        "User-Agent": "PostmanRuntime/7.26.3",
+        "X-Amzn-Trace-Id": "Root",
+        "X-Forwarded-For": "IP",
+        "X-Forwarded-Port": "443",
+        "X-Forwarded-Proto": "https",
+        "accept": "*/*",
+        "accept-encoding": "gzip, deflate, br"
+    },
+    "multiValueHeaders": {
+        "Content-Length": [
+            "54"
+        ],
+        "Content-Type": [
+            "application/json"
+        ],
+        "Host": [
+            "awsid.execute-api.eu-central-1.amazonaws.com"
+        ],
+        "Postman-Token": [
+            "Token"
+        ],
+        "User-Agent": [
+            "PostmanRuntime/7.26.3"
+        ],
+        "X-Amzn-Trace-Id": [
+            "Root"
+        ],
+        "X-Forwarded-For": [
+            "IP"
+        ],
+        "X-Forwarded-Port": [
+            "443"
+        ],
+        "X-Forwarded-Proto": [
+            "https"
+        ],
+        "accept": [
+            "*/*"
+        ],
+        "accept-encoding": [
+            "gzip, deflate, br"
+        ]
+    },
+    "queryStringParameters": null,
+    "multiValueQueryStringParameters": null,
+    "requestContext": {
+        "accountId": "ID",
+        "apiId": "ID",
+        "domainName": "awsid.execute-api.eu-central-1.amazonaws.com",
+        "domainPrefix": "ID",
+        "extendedRequestId": "ID=",
+        "httpMethod": "POST",
+        "identity": {
+            "accessKey": null,
+            "accountId": null,
+            "caller": null,
+            "cognitoAuthenticationProvider": null,
+            "cognitoAuthenticationType": null,
+            "cognitoIdentityId": null,
+            "cognitoIdentityPoolId": null,
+            "principalOrgId": null,
+            "sourceIp": "IP",
+            "user": null,
+            "userAgent": "PostmanRuntime/7.26.3",
+            "userArn": null
+        },
+        "path": "/stage/dummy/permission/validate",
+        "protocol": "HTTP/1.1",
+        "requestId": "ID=",
+        "requestTime": "25/Aug/2020:14:10:07 +0000",
+        "requestTimeEpoch": 1598364607399,
+        "resourceId": "POST /dummy/permission/validate",
+        "resourcePath": "/dummy/permission/validate",
+        "stage": "stage"
+    },
+    "pathParameters": null,
+    "stageVariables": null,
+    "body": "{\r\n    \"permissions\": [\r\n        \"USER::GET\"\r\n    ]\r\n}",
+    "isBase64Encoded": false
+}
