@@ -1,5 +1,8 @@
 # Release history
 
+### 0.0.8
+Add xml to dict converter utility. No dependencies.
+
 ### 0.0.7
 Fix imports.
 
