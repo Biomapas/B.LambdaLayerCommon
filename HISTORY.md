@@ -1,5 +1,8 @@
 # Release history
 
+### 0.0.11
+Fix imports.
+
 ### 0.0.10
 Implement exceptions.
 

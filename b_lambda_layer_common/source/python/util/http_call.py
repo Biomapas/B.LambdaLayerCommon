@@ -1,12 +1,24 @@
 import json
+import logging
 
 import urllib3
 from urllib3 import HTTPResponse
 from urllib3.exceptions import HTTPError
 
-from b_lambda_layer_common.source.python.exceptions.container.internal_error import InternalError
-from b_lambda_layer_common.source.python.exceptions.container.not_reached_error import NotReachedError
-from b_lambda_layer_common.source.python.exceptions.exception_mapper import ExceptionMapper
+logger = logging.getLogger(__file__)
+
+try:
+    # Lambda specific imports.
+    from exceptions.container.internal_error import InternalError
+    from exceptions.container.not_reached_error import NotReachedError
+    from exceptions.exception_mapper import ExceptionMapper
+except ImportError as ex:
+    logger.warning(f'Unable to import: {repr(ex)}.')
+
+    # Project specific imports.
+    from b_lambda_layer_common.source.python.exceptions.container.internal_error import InternalError
+    from b_lambda_layer_common.source.python.exceptions.container.not_reached_error import NotReachedError
+    from b_lambda_layer_common.source.python.exceptions.exception_mapper import ExceptionMapper
 
 
 class HttpCall:
@@ -21,7 +33,7 @@ class HttpCall:
         :param headers: Headers for the http call.
         :param urlopen_kw: Additional urllib3 request parameters.
 
-        :return:
+        :return: Http response.
         """
         http = urllib3.PoolManager()
 
