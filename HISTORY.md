@@ -1,5 +1,8 @@
 # Release history
 
+### 0.0.12
+Implement API Gateway body parsing.
+
 ### 0.0.11
 Fix imports.
 
