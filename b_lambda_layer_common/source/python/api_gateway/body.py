@@ -29,16 +29,15 @@ class Body:
 
         :return: Event body as a dictionary.
         """
-        str_body = self.decoded()
+        str_body = urllib.parse.unquote(self.decoded())
         parsed_body = {}
 
         for item in str_body.split('&'):
             key, value = item.split('=')
-            parsed_value = urllib.parse.unquote(value)
             try:
-                parsed_body[key] = json.loads(parsed_value)
+                parsed_body[key] = json.loads(value)
             except JSONDecodeError:
-                parsed_body[key] = parsed_value
+                parsed_body[key] = value
 
         return parsed_body
 
