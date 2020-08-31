@@ -1,5 +1,8 @@
 # Release history
 
+### 0.0.10
+Implement exceptions.
+
 ### 0.0.9
 Fix api gateway url.
 
