@@ -23,6 +23,10 @@ class Body:
         """
         Loads a urlencoded body as a dictionary.
 
+        Example:
+            in: TaskAttributes=%7B%22from_country%22%3A%22LT%22%7D&TaskPriority=0
+            out: {'TaskAttributes': {'from_country': 'LT'}, 'TaskPriority': 0}
+
         :return: Event body as a dictionary.
         """
         str_body = self.decoded()
@@ -42,6 +46,10 @@ class Body:
         """
         Loads a JSON body as a dictionary.
 
+        Example:
+            in: "{\"email\":\"email@biomapas.com\",\"group_id\":\"abc1\"}"
+            out: {'email': 'email@biomapas.com', 'group_id': 'abc1'}
+
         :return: Event body as a dictionary.
         """
         return json.loads(self.decoded())
@@ -49,6 +57,11 @@ class Body:
     def decoded(self) -> str:
         """
         Makes sure the body is not Base64 encoded.
+
+        Example:
+            in: SGVsbG8gd29ybGQh
+            out: Hello world!
+
 
         :return: Event body in string format.
         """
