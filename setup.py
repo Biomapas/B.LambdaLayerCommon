@@ -8,7 +8,7 @@ with open('HISTORY.md') as history_file:
 
 setup(
     name='b_lambda_layer_common',
-    version='0.0.11',
+    version='0.0.12',
     license='Apache License 2.0',
     packages=find_packages(exclude=[
         # Exclude virtual environment.
