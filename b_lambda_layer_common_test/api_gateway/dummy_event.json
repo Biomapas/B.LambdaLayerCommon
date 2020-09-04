@@ -56,6 +56,21 @@
     "requestContext": {
         "accountId": "ID",
         "apiId": "ID",
+        "authorizer": {
+            "claims": {
+                "auth_time": "1599203825",
+                "client_id": "unique_client_id",
+                "event_id": "unique_event_id",
+                "exp": "1599207425",
+                "iat": "1599203825",
+                "iss": "https://cognito-idp.eu-central-1.amazonaws.com/eu-central-1_aaaaaaaaa",
+                "jti": "jti_string",
+                "sub": "unique_sub",
+                "token_use": "access",
+                "username": "unique_user_name"
+            },
+            "scopes": null
+        },
         "domainName": "awsid.execute-api.eu-central-1.amazonaws.com",
         "domainPrefix": "ID",
         "extendedRequestId": "ID=",
