@@ -18,10 +18,10 @@ class CognitoAccessToken:
         :param event: Lambda event.
         """
         try:
-            self.__claims = event['authorizer']['claims']
+            self.__claims = event['requestContext']['authorizer']['claims']
 
-            assert self.token_use != 'access'
-        except (KeyError, AssertionError):
+            assert self.token_use == 'access'
+        except (KeyError, AssertionError) as ex:
             raise UnauthorizedError('Missing access token.')
 
     @property
