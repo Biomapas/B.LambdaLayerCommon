@@ -1,6 +1,7 @@
 import json
 import logging
-from typing import Optional, Dict, Any
+from json import JSONEncoder
+from typing import Optional, Dict, Any, Type
 
 logger = logging.getLogger(__file__)
 
@@ -27,7 +28,8 @@ class Response:
     def json(
             http_status: int,
             headers: Optional[ResponseHeaders],
-            body: Optional[Dict[Any, Any]] = None
+            body: Optional[Dict[Any, Any]] = None,
+            json_encoder: Optional[Type[JSONEncoder]] = None
     ) -> Dict[Any, Any]:
         r = {
             'isBase64Encoded': False,
@@ -38,6 +40,6 @@ class Response:
             r['headers'] = headers.headers_dict
 
         if body:
-            r['body'] = json.dumps(body)
+            r['body'] = json.dumps(body, cls=json_encoder)
 
         return r
