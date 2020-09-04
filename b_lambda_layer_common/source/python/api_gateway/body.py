@@ -33,7 +33,11 @@ class Body:
         parsed_body = {}
 
         for item in str_body.split('&'):
-            key, value = item.split('=', 1)
+            # maxsplit=1 is important here, because sometimes values can be other URLs containing '=' signs.
+            # Example:
+            #   in: 'UrlAttribute=https://www.example.com/example?param1=one&param2=two'
+            #   out with maxsplit=1: ['UrlAttribute', 'https://www.example.com/example?param1=one&param2=two']
+            key, value = item.split('=', maxsplit=1)
             try:
                 parsed_body[key] = json.loads(value)
             except JSONDecodeError:
