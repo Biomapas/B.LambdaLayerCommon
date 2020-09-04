@@ -1,5 +1,11 @@
 # Release history
 
+### 0.0.14
+Add a LoggingManager for setting up logging configuration
+
+### 0.0.13
+Add custom JSON encoder with support for decimal.Decimal encoding
+
 ### 0.0.12
 Implement API Gateway body parsing.
 
