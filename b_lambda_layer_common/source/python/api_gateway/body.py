@@ -33,7 +33,7 @@ class Body:
         parsed_body = {}
 
         for item in str_body.split('&'):
-            key, value = item.split('=')
+            key, value = item.split('=', 1)
             try:
                 parsed_body[key] = json.loads(value)
             except JSONDecodeError:
