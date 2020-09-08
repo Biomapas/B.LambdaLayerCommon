@@ -37,6 +37,15 @@ class HttpCall:
         """
         http = urllib3.PoolManager()
 
+        logger.info(
+            f'Calling endpoint: \n'
+            f'{method=}\n'
+            f'{url=}\n'
+            f'{headers=}\n'
+            f'{fields=}\n'
+            f'{urlopen_kw=}'
+        )
+
         try:
             response: HTTPResponse = http.request(
                 method=method,
