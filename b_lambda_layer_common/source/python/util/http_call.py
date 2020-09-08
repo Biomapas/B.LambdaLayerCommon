@@ -5,7 +5,7 @@ import urllib3
 from urllib3 import HTTPResponse
 from urllib3.exceptions import HTTPError
 
-logger = logging.getLogger(__file__)
+logger = logging.getLogger(__name__)
 
 try:
     # Lambda specific imports.

@@ -1,7 +1,7 @@
 import logging
 from typing import Union, Dict, Any, Type
 
-logger = logging.getLogger(__file__)
+logger = logging.getLogger(__name__)
 
 try:
     # Lambda specific imports.
@@ -29,7 +29,8 @@ except ImportError as ex:
     from b_lambda_layer_common.source.python.exceptions.container.failed_rollback_error import FailedRollbackError
     from b_lambda_layer_common.source.python.exceptions.container.forbidden_error import ForbiddenError
     from b_lambda_layer_common.source.python.exceptions.container.internal_error import InternalError
-    from b_lambda_layer_common.source.python.exceptions.container.malformed_permission_error import MalformedPermissionError
+    from b_lambda_layer_common.source.python.exceptions.container.malformed_permission_error import \
+        MalformedPermissionError
     from b_lambda_layer_common.source.python.exceptions.container.misconfigured_error import MisconfiguredError
     from b_lambda_layer_common.source.python.exceptions.container.not_found_error import NotFoundError
     from b_lambda_layer_common.source.python.exceptions.container.unauthorized_error import UnauthorizedError
@@ -54,6 +55,8 @@ class ExceptionMapper:
 
     @staticmethod
     def map_and_raise(exception: Union[str, Dict[str, Any], Exception]) -> None:
+        logger.info(f'Trying to map error: {exception}')
+
         if isinstance(exception, str):
             try:
                 raise ExceptionMapper.__EXCEPTION_MAP[exception]()

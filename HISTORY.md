@@ -1,5 +1,8 @@
 # Release history
 
+### 0.0.16
+Fix logging imports. Add logging of exception tracebacks to exception_middleware.
+
 ### 0.0.15
 Add a CognitoAccessToken for parsing access token information provided by the API Gateway using Cognito authorizer.
 

@@ -1,7 +1,7 @@
 import logging
 from functools import wraps
 
-logger = logging.getLogger(__file__)
+logger = logging.getLogger(__name__)
 
 try:
     # Lambda specific imports.
@@ -30,6 +30,8 @@ def exception_middleware(func):
         try:
             return func(*args, **kwargs)
         except HttpException as ex:
+            logger.exception('HTTP exception encountered.')
+
             data = ex.data()
 
             return Response.json(
@@ -38,6 +40,8 @@ def exception_middleware(func):
                 body=data
             )
         except Exception as ex:
+            logger.exception('Unexpected exception encountered.')
+
             error = InternalError(str(ex))
 
             return Response.json(

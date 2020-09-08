@@ -2,7 +2,7 @@ import logging
 from abc import ABC
 from typing import Optional, Any, Dict
 
-logger = logging.getLogger(__file__)
+logger = logging.getLogger(__name__)
 
 try:
     # Lambda specific imports.
