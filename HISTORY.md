@@ -4,6 +4,7 @@
 * Fix logging imports.
 * Add logging of exception tracebacks to exception_middleware.
 * Add logging about HTTP requests.
+* Set request scheme for parent API Gateway urls depending on current protocol.
 
 ### 0.0.15
 * Add a CognitoAccessToken for parsing access token information provided by the API Gateway using Cognito authorizer.
