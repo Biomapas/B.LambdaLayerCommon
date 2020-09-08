@@ -1,5 +1,8 @@
 # Release history
 
+### 0.0.15
+Add a CognitoAccessToken for parsing access token information provided by the API Gateway using Cognito authorizer.
+
 ### 0.0.14
 Add a LoggingManager for setting up logging configuration
 
