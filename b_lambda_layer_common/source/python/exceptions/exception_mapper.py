@@ -55,7 +55,8 @@ class ExceptionMapper:
 
     @staticmethod
     def map_and_raise(exception: Union[str, Dict[str, Any], Exception]) -> None:
-        logger.info(f'Trying to map error: {exception}')
+        logger.info(f'Trying to map error...\n'
+                    f'{exception=}')
 
         if isinstance(exception, str):
             try:
