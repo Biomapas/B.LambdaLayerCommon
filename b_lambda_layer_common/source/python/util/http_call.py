@@ -37,7 +37,7 @@ class HttpCall:
         """
         http = urllib3.PoolManager()
 
-        logger.info(
+        logger.debug(
             f'Calling endpoint: \n'
             f'{method=}\n'
             f'{url=}\n'
