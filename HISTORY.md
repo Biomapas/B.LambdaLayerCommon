@@ -1,5 +1,12 @@
 # Release history
 
+### 1.0.0
+* Release version with major braking changes.
+* Consistent naming for imports.
+* Unit tests to cover all functions and classes.
+* Add neighbour endpoint.
+* General code improvements and cleanup.
+
 ### 0.0.16
 * Fix logging imports.
 * Add logging of exception tracebacks to exception_middleware.

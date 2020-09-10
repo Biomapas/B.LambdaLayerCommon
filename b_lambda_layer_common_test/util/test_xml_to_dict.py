@@ -1,9 +1,9 @@
 from xml.etree import ElementTree
 
-from b_lambda_layer_common.source.python.util.xml_to_dict import XmlToDict
+from b_lambda_layer_common.source.python.b_lambda_layer_common.util.xml_to_dict import XmlToDict
 
 
-def test_string_xml_to_dict() -> None:
+def test_FUNC_convert_WITH_dummy_xml_string_EXPECT_successful_conversion() -> None:
     """
     Checks whether string representing xml can be converted to a dict successfully.
 
@@ -14,7 +14,7 @@ def test_string_xml_to_dict() -> None:
     assert dictionary == {'element': None}
 
 
-def test_xml_object_to_dict() -> None:
+def test_FUNC_convert_WITH_dummy_xml_document_EXPECT_successful_conversion() -> None:
     """
     Checks whether xml element can be converted to a dict successfully.
 

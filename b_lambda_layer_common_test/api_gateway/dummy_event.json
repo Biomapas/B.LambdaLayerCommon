@@ -14,7 +14,8 @@
         "X-Forwarded-Port": "443",
         "X-Forwarded-Proto": "https",
         "accept": "*/*",
-        "accept-encoding": "gzip, deflate, br"
+        "accept-encoding": "gzip, deflate, br",
+        "authorization": "Bearer token"
     },
     "multiValueHeaders": {
         "Content-Length": [
