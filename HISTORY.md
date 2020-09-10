@@ -1,46 +1,52 @@
 # Release history
 
+### 0.0.16
+* Fix logging imports.
+* Add logging of exception tracebacks to exception_middleware.
+* Add logging about HTTP requests.
+* Set request scheme for parent API Gateway urls depending on current protocol.
+
 ### 0.0.15
-Add a CognitoAccessToken for parsing access token information provided by the API Gateway using Cognito authorizer.
+* Add a CognitoAccessToken for parsing access token information provided by the API Gateway using Cognito authorizer.
 
 ### 0.0.14
-Add a LoggingManager for setting up logging configuration
+* Add a LoggingManager for setting up logging configuration
 
 ### 0.0.13
-Add custom JSON encoder with support for decimal.Decimal encoding
+* Add custom JSON encoder with support for decimal.Decimal encoding
 
 ### 0.0.12
-Implement API Gateway body parsing.
+* Implement API Gateway body parsing.
 
 ### 0.0.11
-Fix imports.
+* Fix imports.
 
 ### 0.0.10
-Implement exceptions.
+* Implement exceptions.
 
 ### 0.0.9
-Fix api gateway url.
+* Fix api gateway url.
 
 ### 0.0.8
-Add xml to dict converter utility. No dependencies.
+* Add xml to dict converter utility. No dependencies.
 
 ### 0.0.7
-Fix imports.
+* Fix imports.
 
 ### 0.0.6
-Add ability to check whether singleton was initialized.
+* Add ability to check whether singleton was initialized.
 
 ### 0.0.5
-Remove description.
+* Remove description.
 
 ### 0.0.4
-Do not create an extra stack.
+* Do not create an extra stack.
 
 ### 0.0.3
-Add safe initialization.
+* Add safe initialization.
 
 ### 0.0.2
-Add Layer class and Singleton.
+* Add Layer class and Singleton.
 
 ### 0.0.1
-Initial build.
+* Initial build.

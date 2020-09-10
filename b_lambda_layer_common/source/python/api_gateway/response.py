@@ -3,7 +3,7 @@ import logging
 from json import JSONEncoder
 from typing import Optional, Dict, Any, Type
 
-logger = logging.getLogger(__file__)
+logger = logging.getLogger(__name__)
 
 try:
     # Lambda specific imports.

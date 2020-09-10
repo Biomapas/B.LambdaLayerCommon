@@ -1,4 +1,7 @@
+import logging
 from typing import Dict, Any
+
+logger = logging.getLogger(__name__)
 
 
 class Url:
@@ -13,7 +16,7 @@ class Url:
         """
         try:
             return (
-                f'https://'
+                f'{event["headers"]["X-Forwarded-Proto"]}://'
                 f'{event["requestContext"]["domainName"]}/'
                 f'{event["requestContext"]["stage"]}'
             )

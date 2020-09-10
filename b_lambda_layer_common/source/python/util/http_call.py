@@ -5,7 +5,7 @@ import urllib3
 from urllib3 import HTTPResponse
 from urllib3.exceptions import HTTPError
 
-logger = logging.getLogger(__file__)
+logger = logging.getLogger(__name__)
 
 try:
     # Lambda specific imports.
@@ -36,6 +36,14 @@ class HttpCall:
         :return: Http response.
         """
         http = urllib3.PoolManager()
+
+        logger.debug(
+            f'Calling endpoint...\n'
+            f'{method} {url}\n'
+            f'{headers=}\n'
+            f'{fields=}\n'
+            f'{urlopen_kw=}\n'
+        )
 
         try:
             response: HTTPResponse = http.request(
