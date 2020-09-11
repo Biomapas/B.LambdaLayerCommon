@@ -43,6 +43,10 @@ class NeighbourEndpoint:
         return self.__http_endpoint.call_to_response()
 
     @property
+    def http_endpoint(self) -> HttpEndpoint:
+        return self.__http_endpoint
+
+    @property
     def parent_api(self) -> str:
         return Url.from_event(self.__lambda_event)
 

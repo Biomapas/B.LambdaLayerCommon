@@ -1,5 +1,8 @@
 # Release history
 
+### 1.0.1
+* Expose http_endpoint on NeigbourEndpoint class.
+
 ### 1.0.0
 * Release version with major braking changes.
 * Consistent naming for imports.
