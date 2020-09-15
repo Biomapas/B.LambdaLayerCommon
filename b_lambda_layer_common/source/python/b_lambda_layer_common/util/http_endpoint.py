@@ -9,7 +9,7 @@ logger = logging.getLogger(__file__)
 try:
     from b_lambda_layer_common.util.http_call import HttpCall
 except ImportError as ex:
-    logger.warning(f'Unable to import: {repr(ex)}.')
+    logger.exception(f'Failed import.')
     from b_lambda_layer_common.source.python.b_lambda_layer_common.util.http_call import HttpCall
 
 

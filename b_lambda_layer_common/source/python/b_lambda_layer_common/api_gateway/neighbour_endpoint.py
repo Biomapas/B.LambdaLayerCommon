@@ -9,7 +9,7 @@ try:
     from b_lambda_layer_common.api_gateway.url import Url
     from b_lambda_layer_common.util.http_endpoint import HttpEndpoint
 except ImportError as ex:
-    logger.warning(f'Unable to import: {repr(ex)}.')
+    logger.exception(f'Failed import.')
     from b_lambda_layer_common.source.python.b_lambda_layer_common.api_gateway.url import Url
     from b_lambda_layer_common.source.python.b_lambda_layer_common.util.http_endpoint import HttpEndpoint
 

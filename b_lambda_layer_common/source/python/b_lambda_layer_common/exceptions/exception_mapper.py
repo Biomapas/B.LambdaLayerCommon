@@ -18,7 +18,7 @@ try:
     from b_lambda_layer_common.exceptions.container.unauthorized_error import UnauthorizedError
     from b_lambda_layer_common.exceptions.http_exception import HttpException
 except ImportError as ex:
-    logger.warning(f'Unable to import: {repr(ex)}.')
+    logger.exception(f'Failed import.')
     from .container.not_reached_error import NotReachedError
     from .container.dependency_error import DependencyError
     from .container.already_exists_error import AlreadyExistsError
