@@ -8,7 +8,7 @@ logger = logging.getLogger(__name__)
 try:
     from b_lambda_layer_common.api_gateway.response_headers import ResponseHeaders
 except ImportError as ex:
-    logger.warning(f'Unable to import: {repr(ex)}.')
+    logger.exception(f'Failed import.')
     from b_lambda_layer_common.source.python.b_lambda_layer_common.api_gateway.response_headers import ResponseHeaders
 
 

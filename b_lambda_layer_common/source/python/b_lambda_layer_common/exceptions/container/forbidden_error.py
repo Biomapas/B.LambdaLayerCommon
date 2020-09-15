@@ -1,8 +1,12 @@
+import logging
 from typing import Optional
+
+logger = logging.getLogger(__name__)
 
 try:
     from b_lambda_layer_common.exceptions.http_exception import HttpException
 except ImportError as ex:
+    logger.exception(f'Failed import.')
     from b_lambda_layer_common.source.python.b_lambda_layer_common.exceptions.http_exception import HttpException
 
 
@@ -24,4 +28,3 @@ class ForbiddenError(HttpException):
             'The server understood the request but refuses to authorize it. A server that wishes to make public why '
             'the request has been forbidden can describe that reason in the response payload (if any).'
         )
-
