@@ -1,5 +1,8 @@
 # Release history
 
+### 1.0.3
+* Modify call_to_json function by checking whether the response contains body.
+
 ### 1.0.2
 * Add exception logging for failed imports.
 

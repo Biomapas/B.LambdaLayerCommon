@@ -58,7 +58,12 @@ class HttpEndpoint:
 
         :return: Http response represented as dictionary.
         """
-        return json.loads(self.__call().data)
+        data = self.__call().data
+
+        if data == b'':
+            return {}
+
+        return json.loads(data)
 
     def call_to_bytes(self) -> bytes:
         """
