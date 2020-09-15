@@ -1,5 +1,8 @@
 # Release history
 
+### 1.0.2
+* Add exception logging for failed imports.
+
 ### 1.0.1
 * Expose http_endpoint on NeigbourEndpoint class.
 
