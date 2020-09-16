@@ -1,5 +1,8 @@
 # Release history
 
+### 1.1.1
+Add urllib3 dependency.
+
 ### 1.1.0
 * Add DynamoDBEncoder that subclasses DecimalEncoder and additionally encodes sets as lists
 

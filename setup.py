@@ -24,6 +24,7 @@ setup(
     include_package_data=True,
     install_requires=[
         "aws-cdk.aws_lambda>=1.54.0,<2.0.0",
+        "urllib3>=1.25.10,<2.0.0"
     ],
     author='Laimonas Sutkus',
     author_email='laimonas.sutkus@biomapas.com',
