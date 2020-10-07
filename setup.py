@@ -6,9 +6,13 @@ with open('README.md') as readme_file:
 with open('HISTORY.md') as history_file:
     HISTORY = history_file.read()
 
+with open('VERSION') as file:
+    VERSION = file.read()
+    VERSION = ''.join(VERSION.split())
+
 setup(
     name='b_lambda_layer_common',
-    version='1.1.1',
+    version=VERSION,
     license='Apache License 2.0',
     packages=find_packages(exclude=[
         # Exclude virtual environment.
@@ -24,7 +28,9 @@ setup(
     include_package_data=True,
     install_requires=[
         "aws-cdk.aws_lambda>=1.54.0,<2.0.0",
-        "urllib3>=1.25.10,<2.0.0"
+        "urllib3>=1.25.10,<2.0.0",
+        'pytest>=6.0.2,<7.0.0',
+        'pytest-cov>=2.10.1,<3.0.0'
     ],
     author='Laimonas Sutkus',
     author_email='laimonas.sutkus@biomapas.com',

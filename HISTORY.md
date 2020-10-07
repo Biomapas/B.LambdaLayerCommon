@@ -1,10 +1,14 @@
 # Release history
 
+### 1.1.2
+* Make sure test coverage is at least 80%.
+* Add CI/CD pipeline.
+
 ### 1.1.1
-Add urllib3 dependency.
+* Add urllib3 dependency.
 
 ### 1.1.0
-* Add DynamoDBEncoder that subclasses DecimalEncoder and additionally encodes sets as lists
+* Add DynamoDBEncoder that subclasses DecimalEncoder and additionally encodes sets as lists.
 
 ### 1.0.3
 * Modify call_to_json function by checking whether the response contains body.
