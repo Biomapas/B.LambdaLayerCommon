@@ -79,7 +79,16 @@ class HttpEndpoint:
 
         :return: Http response represented as string.
         """
-        return self.__call().data.decode('UTF-8')
+        data = self.__call().data
+        encodings = ['utf-8', 'ISO-8859-1', 'Windows-1251', 'Windows-1252']
+
+        for en in encodings:
+            try:
+                return data.decode(encoding=en)
+            except (LookupError, UnicodeDecodeError):
+                continue
+
+        raise ValueError('Unable to decode data.')
 
     def call_to_response(self) -> HTTPResponse:
         """

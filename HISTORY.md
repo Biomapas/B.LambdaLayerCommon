@@ -3,6 +3,7 @@
 ### 1.1.2
 * Make sure test coverage is at least 80%.
 * Add CI/CD pipeline.
+* Add more encodings to decode responses.
 
 ### 1.1.1
 * Add urllib3 dependency.
