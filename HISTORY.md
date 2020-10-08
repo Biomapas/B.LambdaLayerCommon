@@ -1,5 +1,8 @@
 # Release history
 
+### 1.1.3
+* Implement retrying logic to HttpCall.
+
 ### 1.1.2
 * Make sure test coverage is at least 80%.
 * Add CI/CD pipeline.
