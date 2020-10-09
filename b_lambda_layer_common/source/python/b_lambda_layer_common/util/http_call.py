@@ -1,5 +1,6 @@
 import json
 import logging
+import time
 
 import urllib3
 from urllib3 import HTTPResponse
@@ -19,6 +20,10 @@ except ImportError as ex:
 
 
 class HttpCall:
+    WAIT_EXPONENTIATION_FACTOR = 2
+    MAXIMUM_SINGLE_WAIT = 4
+    INITIAL_WAIT_TIME = 0.25
+
     @staticmethod
     def call(method, url, fields=None, headers=None, **urlopen_kw) -> HTTPResponse:
         """
@@ -43,22 +48,44 @@ class HttpCall:
             f'{urlopen_kw=}.'
         )
 
-        try:
-            response: HTTPResponse = http.request(
-                method=method,
-                url=url,
-                fields=fields,
-                headers=headers,
-                **urlopen_kw
-            )
-        except HTTPError as ex:
-            raise NotReachedError(str(ex))
-
-        if 400 <= response.status <= 599:
+        wait_length = HttpCall.INITIAL_WAIT_TIME
+        last_exception = None
+        while wait_length <= HttpCall.MAXIMUM_SINGLE_WAIT:
             try:
-                error_data = json.loads(response.data)
-                ExceptionMapper.map_and_raise(error_data)
-            except ValueError:
-                raise InternalError(f'Http call failed with status: {response.status}.')
+                try:
+                    response: HTTPResponse = http.request(
+                        method=method,
+                        url=url,
+                        fields=fields,
+                        headers=headers,
+                        **urlopen_kw
+                    )
+                except HTTPError as ex:
+                    raise NotReachedError(str(ex))
+                if HttpCall.is_status_repeatable(response.status):
+                    try:
+                        error_data = json.loads(response.data)
+                        ExceptionMapper.map_and_raise(error_data)
+                    except ValueError:
+                        raise InternalError(f'Http call failed with status: {response.status}.')
+            except Exception as ex:
+                # Store the last exception thrown to rethrow at a later point.
+                last_exception = ex
+                time.sleep(wait_length)
+                wait_length *= HttpCall.WAIT_EXPONENTIATION_FACTOR
+            else:
+                # Successful request.
+                if 400 <= response.status <= 599:
+                    try:
+                        error_data = json.loads(response.data)
+                        ExceptionMapper.map_and_raise(error_data)
+                    except ValueError:
+                        raise InternalError(f'Http call failed with status: {response.status}.')
+                return response
+        # Retry attempts exceeded, raise the last exception.
+        raise last_exception
 
-        return response
+    @staticmethod
+    def is_status_repeatable(status:int):
+        # 429 is "Too many requests" and we try to repeat on all 5xx errors.
+        return (status == 429 or status >=500)
