@@ -10,7 +10,7 @@ class LoggingManager:
     def __init__(
             self,
             *,
-            log_level: int = logging.INFO,
+            log_level: int = logging.DEBUG,
             formatter: Optional[logging.Formatter] = None
     ) -> None:
         """
