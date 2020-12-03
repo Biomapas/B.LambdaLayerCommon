@@ -1,5 +1,8 @@
 # Release history
 
+### 1.2.0
+* Add DoNotUpdate class, useful when checking what parameters to update and what not.
+
 ### 1.1.3
 * Implement retrying logic to HttpCall.
 
