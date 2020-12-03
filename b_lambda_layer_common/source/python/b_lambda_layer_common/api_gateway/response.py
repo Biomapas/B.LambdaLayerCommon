@@ -40,3 +40,18 @@ class Response:
             r['body'] = json.dumps(body, cls=json_encoder)
 
         return r
+
+    @staticmethod
+    def media(
+            http_status: int,
+            headers: ResponseHeaders,
+            body: bytes
+    ) -> Dict[Any, Any]:
+        r = {
+            'isBase64Encoded': True,
+            'statusCode': http_status,
+            'headers': headers.headers_dict,
+            'body': body
+        }
+
+        return r

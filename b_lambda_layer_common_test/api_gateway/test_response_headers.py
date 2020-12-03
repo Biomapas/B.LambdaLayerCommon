@@ -55,3 +55,29 @@ def test_FUNC_json_headers_WITH_nothing_EXPECT_headers_returned() -> None:
     assert headers == {
         'Content-Type': 'application/json'
     }
+
+
+def test_FUNC_wav_headers_WITH_nothing_EXPECT_headers_returned() -> None:
+    """
+    Test that the function returns appropriate headers.
+
+    :return: No return.
+    """
+    headers = ResponseHeaders.wav_headers().headers_dict
+
+    assert headers == {
+        'Content-Type': 'audio/wav'
+    }
+
+
+def test_FUNC_mpeg_headers_WITH_nothing_EXPECT_headers_returned() -> None:
+    """
+    Test that the function returns appropriate headers.
+
+    :return: No return.
+    """
+    headers = ResponseHeaders.mpeg_headers().headers_dict
+
+    assert headers == {
+        'Content-Type': 'audio/mpeg'
+    }

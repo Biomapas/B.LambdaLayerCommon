@@ -1,5 +1,8 @@
 # Release history
 
+### 1.3.0
+* Add media Response and wav/mpeg headers.
+
 ### 1.2.0
 * Add DoNotUpdate class, useful when checking what parameters to update and what not.
 

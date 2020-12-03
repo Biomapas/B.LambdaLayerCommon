@@ -36,3 +36,23 @@ class ResponseHeaders:
             # Indicate that response is serialized dictionary in JSON format.
             'Content-Type': 'application/json'
         })
+
+    @staticmethod
+    def wav_headers() -> 'ResponseHeaders':
+        """
+        Audio file WAV content type header.
+        """
+        return ResponseHeaders({
+            # Indicate that response is of audio type, wav subtype.
+            'Content-Type': 'audio/wav'
+        })
+
+    @staticmethod
+    def mpeg_headers() -> 'ResponseHeaders':
+        """
+        Audio file MP3 content type header.
+        """
+        return ResponseHeaders({
+            # Indicate that response is of audio type, mpeg subtype.
+            'Content-Type': 'audio/mpeg'
+        })
