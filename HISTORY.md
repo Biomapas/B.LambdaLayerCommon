@@ -1,5 +1,9 @@
 # Release history
 
+### 1.4.0
+* Add functionality to fetch and cache SSM parameters.
+* Add OS type parameters.
+
 ### 1.3.0
 * Add media Response and wav/mpeg headers.
 

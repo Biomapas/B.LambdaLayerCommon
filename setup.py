@@ -32,6 +32,7 @@ setup(
         'pytest>=6.0.2,<7.0.0',
         'pytest-cov>=2.10.1,<3.0.0',
         "pook>=1.0.1,<2.0.0",
+        "boto3>=1.15.0,<2.0.0",
     ],
     author='Laimonas Sutkus',
     author_email='laimonas.sutkus@biomapas.com',
