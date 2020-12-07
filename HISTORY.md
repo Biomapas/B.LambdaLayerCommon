@@ -1,5 +1,8 @@
 # Release history
 
+### 1.5.1
+* Add logging on ssm error decorator.
+
 ### 1.5.0
 * Force using error_class to error_classes.
 

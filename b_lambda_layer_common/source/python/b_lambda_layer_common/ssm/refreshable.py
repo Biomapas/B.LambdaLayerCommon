@@ -1,7 +1,10 @@
+import logging
 from abc import ABC, abstractmethod
 from datetime import timedelta, datetime
 from typing import Callable, List, Type, Optional
 from functools import wraps
+
+logger = logging.getLogger(__name__)
 
 
 class Refreshable(ABC):
@@ -49,12 +52,20 @@ class Refreshable(ABC):
                 try:
                     return func(*args, **kwargs)
                 except tuple(error_classes or [Exception]):
+                    logger.exception('Got an error while calling the decorated function.')
+
+                    logger.info('Refreshing value...')
                     self.refresh()
 
                     if error_callback:
+                        logger.info(f'Calling callback function {str(error_callback)}...')
                         error_callback()
-
-                    return func(*args, **kwargs)
+                    try:
+                        logger.info('Calling the decorated function again...')
+                        return func(*args, **kwargs)
+                    except Exception:
+                        logger.exception('After the value was refreshed we still ran into an error.')
+                        raise
             return wrapped
         return decorator
 
@@ -70,7 +81,7 @@ class Refreshable(ABC):
         # Force refresh only if max_age seconds have expired.
         return datetime.utcnow() > self.__last_refresh_time + self.__max_age_delta
 
-    def __update_refresh_time(self, keep_oldest_value=False):
+    def __update_refresh_time(self, keep_oldest_value: bool = False):
         """
         Update internal reference with current time.
         Optionally, keep the oldest available reference
