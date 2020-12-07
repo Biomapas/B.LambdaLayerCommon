@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from datetime import timedelta, datetime
-from typing import Callable
+from typing import Callable, List, Type, Optional
 from functools import wraps
 
 
@@ -28,8 +28,8 @@ class Refreshable(ABC):
 
     def refresh_on_error(
             self,
-            error_class=Exception,
-            error_callback=None
+            error_classes: Optional[List[Type[Exception]]] = None,
+            error_callback: Optional[Callable] = None,
     ) -> Callable:
         """
         Decorator to handle errors and retries.
@@ -48,7 +48,7 @@ class Refreshable(ABC):
                 """
                 try:
                     return func(*args, **kwargs)
-                except error_class:
+                except tuple(error_classes or [Exception]):
                     self.refresh()
 
                     if error_callback:

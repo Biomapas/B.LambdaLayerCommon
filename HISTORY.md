@@ -1,5 +1,8 @@
 # Release history
 
+### 1.5.0
+* Force using error_class to error_classes.
+
 ### 1.4.0
 * Add functionality to fetch and cache SSM parameters.
 * Add OS type parameters.
