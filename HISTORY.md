@@ -1,5 +1,8 @@
 # Release history
 
+### 1.6.1
+* Add more logging for better visibility.
+
 ### 1.6.0
 * SSM should_refresh function should be public.
 

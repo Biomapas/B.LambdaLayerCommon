@@ -85,6 +85,7 @@ class SSMParameter(Refreshable):
         The value of a given param name.
         """
         if self.__value is None or self.should_refresh():
+            logger.info('Parameter state indicated that it needs refreshing.')
             self.refresh()
 
         return self.__value

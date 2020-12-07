@@ -25,6 +25,8 @@ class Refreshable(ABC):
         """
         Updates the value(s) of this refreshable.
         """
+        logger.info('Refreshing value...')
+
         self.re_fetch()
         # Keep track of update date for max_age checks.
         self.__update_refresh_time()
@@ -54,7 +56,6 @@ class Refreshable(ABC):
                 except tuple(error_classes or [Exception]):
                     logger.exception('Got an error while calling the decorated function.')
 
-                    logger.info('Refreshing value...')
                     self.refresh()
 
                     if error_callback:

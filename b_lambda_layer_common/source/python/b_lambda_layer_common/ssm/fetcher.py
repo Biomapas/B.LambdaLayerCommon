@@ -1,5 +1,9 @@
+import json
+import logging
 from typing import Iterable, List
 from boto3 import client
+
+logger = logging.getLogger(__name__)
 
 
 class Fetcher:
@@ -26,6 +30,8 @@ class Fetcher:
             for item in response['Parameters']:
                 item['Value'] = self.__parse_value(item['Value'], item['Type'])
                 items[item['Name']] = item
+
+        logger.info(f'Fetched parameters: {json.dumps(items)}.')
 
         return items, invalid_names
 
