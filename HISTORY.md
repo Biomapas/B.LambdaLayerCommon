@@ -1,5 +1,8 @@
 # Release history
 
+### 1.6.0
+* SSM should_refresh function should be public.
+
 ### 1.5.1
 * Add logging on ssm error decorator.
 

@@ -69,7 +69,7 @@ class Refreshable(ABC):
             return wrapped
         return decorator
 
-    def __should_refresh(self):
+    def should_refresh(self):
         # Never force refresh if no max_age is configured.
         if not self.__max_age:
             return False

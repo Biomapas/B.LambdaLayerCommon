@@ -74,7 +74,7 @@ class SSMParameter(Refreshable):
         """
         Version property.
         """
-        if self.__version is None or self.__should_refresh():
+        if self.__version is None or self.should_refresh():
             self.refresh()
 
         return self.__version
@@ -84,7 +84,7 @@ class SSMParameter(Refreshable):
         """
         The value of a given param name.
         """
-        if self.__value is None or self.__should_refresh():
+        if self.__value is None or self.should_refresh():
             self.refresh()
 
         return self.__value
