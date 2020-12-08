@@ -1,7 +1,7 @@
 import json
 
 from b_lambda_layer_common.source.python.b_lambda_layer_common.api_gateway.body import Body
-from b_lambda_layer_common_test.api_gateway import root
+from b_lambda_layer_common_test.unit.api_gateway import root
 
 
 def test_FUNC_from_urlencoded_WITH_urlencoded_body_EXPECT_successfully_parsed() -> None:

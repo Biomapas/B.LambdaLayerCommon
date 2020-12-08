@@ -1,5 +1,9 @@
 # Release history
 
+### 1.7.0
+* Simplify SSM parameters functionality.
+* Add robust SSM parameter tests.
+
 ### 1.6.2
 * Do not serialize returned ssm parameters.
 

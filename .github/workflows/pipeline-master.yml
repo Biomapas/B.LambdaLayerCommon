@@ -23,7 +23,7 @@ jobs:
           pip list
 
       - name: Test
-        run: pytest --cov=b_lambda_layer_common b_lambda_layer_common_test --cov-fail-under=80
+        run: pytest --cov=b_lambda_layer_common b_lambda_layer_common_test/unit --cov-fail-under=80
 
       - name: Install
         run: pip install wheel twine

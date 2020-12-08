@@ -12,24 +12,65 @@ class Refreshable(ABC):
     Abstract class for refreshable objects.
     """
 
-    def __init__(self, max_age: int = 0):
-        self.__last_refresh_time = None
+    def __init__(self, max_age: int = 0) -> None:
+        """
+        Constructor.
+
+        :param max_age: Max age in seconds of how long the refreshable object should live until expiration.
+        """
         self.__max_age = max_age
         self.__max_age_delta = timedelta(seconds=max_age)
+        self.__last_refresh_time = None
 
     @abstractmethod
-    def re_fetch(self):
-        raise NotImplementedError
+    def update_value(self) -> None:
+        """
+        Abstract function that each refreshable type object should implement and
+        define the logic of fetching and caching the value.
+
+        :return: No return.
+        """
+        raise NotImplementedError()
 
     def refresh(self):
         """
-        Updates the value(s) of this refreshable.
+        Initiate refresh action which forces to download a new value (update value)
+        and updates the last refresh time for determining the next expiry.
+
+        :return: No return.
         """
         logger.info('Refreshing value...')
 
-        self.re_fetch()
-        # Keep track of update date for max_age checks.
-        self.__update_refresh_time()
+        # Force update value.
+        self.update_value()
+        # Keep track of update date for determining the next expiry.
+        self.update_refresh_time()
+
+    def should_refresh(self) -> bool:
+        """
+        Tells whether the value should be (re)updated (refreshed).
+
+        :return: True if should be updated, False otherwise.
+        """
+        # Never force refresh if no max_age is configured.
+        if not self.__max_age:
+            return False
+
+        # Always force refresh if values were never fetched.
+        if not self.__last_refresh_time:
+            return True
+
+        # Force refresh only if max_age seconds have expired.
+        return datetime.utcnow() > self.__last_refresh_time + self.__max_age_delta
+
+    def update_refresh_time(self) -> None:
+        """
+        Update internal refresh reference with current time.
+
+        :return: No return.
+        """
+        now = datetime.utcnow()
+        self.__last_refresh_time = now
 
     def refresh_on_error(
             self,
@@ -38,6 +79,11 @@ class Refreshable(ABC):
     ) -> Callable:
         """
         Decorator to handle errors and retries.
+
+        :param error_classes: Which errors to handle.
+        :param error_callback: Which function to call in case specified errors are raised.
+
+        :return: Decorator function.
         """
         if error_callback and not callable(error_callback):
             raise TypeError("Callback must be callable.")
@@ -69,28 +115,3 @@ class Refreshable(ABC):
                         raise
             return wrapped
         return decorator
-
-    def should_refresh(self):
-        # Never force refresh if no max_age is configured.
-        if not self.__max_age:
-            return False
-
-        # Always force refresh if values were never fetched.
-        if not self.__last_refresh_time:
-            return True
-
-        # Force refresh only if max_age seconds have expired.
-        return datetime.utcnow() > self.__last_refresh_time + self.__max_age_delta
-
-    def __update_refresh_time(self, keep_oldest_value: bool = False):
-        """
-        Update internal reference with current time.
-        Optionally, keep the oldest available reference
-        (used by groups with multiple fetch operations at potentially different times).
-        """
-        now = datetime.utcnow()
-
-        if keep_oldest_value and self.__last_refresh_time:
-            self.__last_refresh_time = min(now, self.__last_refresh_time)
-        else:
-            self.__last_refresh_time = now

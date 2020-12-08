@@ -14,7 +14,7 @@ def test_FUNC_refresh_on_error_WITH_error_EXPECT_value_refreshed():
 
             self.called_counter = 0
 
-        def re_fetch(self):
+        def update_value(self):
             self.called_counter += 1
 
     dummy_parameter = DummyParameter()

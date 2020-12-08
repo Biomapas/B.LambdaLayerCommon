@@ -1,7 +1,7 @@
 import json
 
 from b_lambda_layer_common.source.python.b_lambda_layer_common.api_gateway.url import Url
-from b_lambda_layer_common_test.api_gateway import root
+from b_lambda_layer_common_test.unit.api_gateway import root
 
 
 def test_FUNC_from_event_WITH_dummy_lambda_event_EXPECT_api_gateway_rest_api_url_extracted():
