@@ -1,5 +1,8 @@
 # Release history
 
+### 1.6.2
+* Do not serialize returned ssm parameters.
+
 ### 1.6.1
 * Add more logging for better visibility.
 
