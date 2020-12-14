@@ -22,6 +22,11 @@ jobs:
           pip install . --upgrade
           pip list
 
+      - name: SetupCDK
+        run: |
+          npm remove aws-cdk
+          npm install aws-cdk
+
       - name: UnitTest
         run: pytest --cov=b_lambda_layer_common b_lambda_layer_common_test/unit --cov-fail-under=80
 
