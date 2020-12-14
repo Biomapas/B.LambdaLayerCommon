@@ -1,5 +1,12 @@
 # Release history
 
+### 1.8.0
+* Change asset bundling to asset docker bundling if additional
+dependencies are specified.
+* Add ability to install boto3 library.
+* Add more unit tests.
+* Add integration tests to deploy and test the Layer in AWS.
+
 ### 1.7.0
 * Simplify SSM parameters functionality.
 * Add robust SSM parameter tests.

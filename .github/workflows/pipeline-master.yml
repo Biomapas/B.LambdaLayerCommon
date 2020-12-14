@@ -12,7 +12,7 @@ on:
 jobs:
   install-test-build-push:
     runs-on: ubuntu-latest
-    container: nikolaik/python-nodejs:python3.8-nodejs14
+    container: biomapas/cicd-full:0.0.2
 
     steps:
       - uses: actions/checkout@v2
@@ -22,8 +22,11 @@ jobs:
           pip install . --upgrade
           pip list
 
-      - name: Test
+      - name: UnitTest
         run: pytest --cov=b_lambda_layer_common b_lambda_layer_common_test/unit --cov-fail-under=80
+
+      - name: IntegrationTest
+        run: pytest b_lambda_layer_common_test/integration/tests
 
       - name: Install
         run: pip install wheel twine
