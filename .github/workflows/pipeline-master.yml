@@ -24,8 +24,8 @@ jobs:
 
       - name: SetupCDK
         run: |
-          npm remove aws-cdk
-          npm install aws-cdk
+          npm remove -g aws-cdk
+          npm install -g aws-cdk
 
       - name: UnitTest
         run: pytest --cov=b_lambda_layer_common b_lambda_layer_common_test/unit --cov-fail-under=80
