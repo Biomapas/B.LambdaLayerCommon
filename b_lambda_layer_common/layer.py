@@ -26,6 +26,7 @@ class Layer(LayerVersion):
                 'find /tmp/asset-output -type f -name "*.py[co]" -delete',
                 'find /tmp/asset-output -type d -name "__pycache__" -delete',
                 'cp -R /tmp/asset-output/. /asset-output/.',
+                'cp -R /asset-input/. /asset-output/.',
                 'ls -la /asset-output/python/.'
             ]
 

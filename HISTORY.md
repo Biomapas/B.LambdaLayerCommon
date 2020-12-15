@@ -1,5 +1,9 @@
 # Release history
 
+### 1.8.1
+* Fix bug when boto3 version is specified project files
+are not copied.
+
 ### 1.8.0
 * Change asset bundling to asset docker bundling if additional
 dependencies are specified.
