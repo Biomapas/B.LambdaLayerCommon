@@ -1,5 +1,8 @@
 # Release history
 
+### 1.8.3
+* Ensure everything works with a robust integration test.
+
 ### 1.8.2
 * Improve Boto3Version class.
 
