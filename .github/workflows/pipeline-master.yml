@@ -12,23 +12,32 @@ on:
 jobs:
   install-test-build-push:
     runs-on: ubuntu-latest
-    container: biomapas/cicd-full:0.0.2
 
     steps:
       - uses: actions/checkout@v2
 
+      - uses: actions/setup-node@v2-beta
+        with:
+          node-version: '12'
+
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+
       - name: Install
         run: |
-          pip install . --upgrade
-          pip list
+          python --version
+          node --version
+          npm --version
 
-      - name: SetupCDK
-        run: |
-          npm remove -g aws-cdk
           npm install -g aws-cdk
+
+          python -m pip install . --upgrade
+          python -m pip list
 
       - name: UnitTest
         run: pytest --cov=b_lambda_layer_common b_lambda_layer_common_test/unit --cov-fail-under=80
+
 
       - name: IntegrationTest
         run: |
