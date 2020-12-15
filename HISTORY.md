@@ -1,5 +1,8 @@
 # Release history
 
+### 1.8.2
+* Improve Boto3Version class.
+
 ### 1.8.1
 * Fix bug when boto3 version is specified project files
 are not copied.
