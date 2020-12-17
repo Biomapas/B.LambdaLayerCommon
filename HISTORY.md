@@ -1,5 +1,8 @@
 # Release history
 
+### 1.9.0
+* Add CSV headers.
+
 ### 1.8.3
 * Ensure everything works with a robust integration test.
 
