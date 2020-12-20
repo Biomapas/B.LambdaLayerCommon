@@ -37,3 +37,13 @@ class Infrastructure(TestingStack):
         )
 
         self.add_output(self.LAMBDA_FUNCTION_NAME_KEY, value=function.function_name)
+
+        # Create another function that is not using boto3.
+        Function(
+            scope=self,
+            id=f'{self.global_prefix()}TestingFunction2',
+            code=Code.from_inline('def handler(*args, **kwargs): return 200'),
+            handler='index.handler',
+            runtime=Runtime.PYTHON_3_6,
+            layers=[Layer(scope=self, name=f'{self.global_prefix()}TestingLayer2')]
+        )

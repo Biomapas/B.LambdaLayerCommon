@@ -10,15 +10,16 @@ class Layer(LayerVersion):
     def __init__(self, scope: Stack, name: str, boto3_version: Optional[Boto3Version] = None):
         boto3_version = boto3_version or Boto3Version.dont_install()
 
+        preinstall_command = ['mkdir -p /tmp/asset-output/python/']
         install_command = []
         build_command = []
         bundling_options = None
         asset_hash_type = None
 
         if boto3_version.version_type == Boto3Version.Boto3VersionType.LATEST:
-            install_command.append(f'pip install boto3 --upgrade --upgrade-strategy eager -t /tmp/asset-output/python')
+            install_command.append(f'pip install boto3 --upgrade --upgrade-strategy eager -t /tmp/asset-output/python/')
         elif boto3_version.version_type == Boto3Version.Boto3VersionType.SPECIFIC:
-            install_command.append(f'pip install boto3=={boto3_version.version_string} -t /tmp/asset-output/python')
+            install_command.append(f'pip install boto3=={boto3_version.version_string} -t /tmp/asset-output/python/')
 
         # If we have specified an installation command, we must specify build commands.
         if install_command:
@@ -43,7 +44,7 @@ class Layer(LayerVersion):
             bundling_options = BundlingOptions(
                 image=BundlingDockerImage.from_registry('python:3.9'),
                 command=[
-                    'bash', '-c', ' && '.join(install_command + build_command)
+                    'bash', '-c', ' && '.join(preinstall_command + install_command + build_command)
                 ]
             )
 

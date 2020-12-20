@@ -1,5 +1,8 @@
 # Release history
 
+### 1.9.5
+* Make the code a little more robust and less error prone.
+
 ### 1.9.4
 * Assets input may contain garbage files too, hence, apply
 cleanup commands directly on asset outputs folder.
