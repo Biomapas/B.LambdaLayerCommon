@@ -1,5 +1,9 @@
 # Release history
 
+### 1.9.2
+* Remove leftover code.
+* Update requirements.
+
 ### 1.9.1
 * Delete unnecessary files which result in different asset hash.
 * Calculate hash when bundling.

@@ -70,28 +70,3 @@ class Layer(LayerVersion):
             Runtime.PYTHON_3_7,
             Runtime.PYTHON_3_8
         ]
-
-
-LayerVersion(
-    scope=scope,
-    id=id,
-    layer_version_name=name,
-    code=Code.from_asset(
-        self.get_source_path(),
-        asset_hash_type=asset_hash_type,
-        bundling=BundlingOptions(
-            image=BundlingDockerImage.from_registry('python:3.9'),
-            command=[
-                'bash', '-c', ' && '.join([
-                    'pip install boto3 --upgrade -t /tmp/asset-output/python',
-                    'find /tmp/asset-output -type f -name "*.py[co]" -delete',
-                    'find /tmp/asset-output -type d -name "__pycache__" -delete',
-                    'cp -R /tmp/asset-output/. /asset-output/.',
-                    'cp -R /asset-input/. /asset-output/.',
-                    'ls -la /asset-output/python/.'
-                ])
-            ]
-        )
-    ),
-    compatible_runtimes=self.runtimes()
-)
