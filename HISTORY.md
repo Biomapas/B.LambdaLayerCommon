@@ -1,5 +1,8 @@
 # Release history
 
+### 1.9.3
+* Add builds badge.
+
 ### 1.9.2
 * Remove leftover code.
 * Update requirements.
