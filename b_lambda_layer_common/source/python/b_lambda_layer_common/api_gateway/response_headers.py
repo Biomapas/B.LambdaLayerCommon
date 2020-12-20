@@ -56,3 +56,13 @@ class ResponseHeaders:
             # Indicate that response is of audio type, mpeg subtype.
             'Content-Type': 'audio/mpeg'
         })
+
+    @staticmethod
+    def csv_headers() -> 'ResponseHeaders':
+        """
+        Text file CSV content type header.
+        """
+        return ResponseHeaders({
+            # Indicate that response is of text type, csv subtype.
+            'Content-Type': 'text/csv'
+        })

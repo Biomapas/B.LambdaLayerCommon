@@ -1,8 +1,11 @@
 # Release history
 
-### 1.8.4
+### 1.9.1
 * Delete unnecessary files which result in different asset hash.
 * Calculate hash when bundling.
+
+### 1.9.0
+* Add CSV headers.
 
 ### 1.8.3
 * Ensure everything works with a robust integration test.
