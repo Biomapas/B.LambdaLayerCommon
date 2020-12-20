@@ -1,5 +1,9 @@
 # Release history
 
+### 1.8.4
+* Delete unnecessary files which result in different asset hash.
+* Calculate hash when bundling.
+
 ### 1.8.3
 * Ensure everything works with a robust integration test.
 
