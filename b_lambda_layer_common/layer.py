@@ -23,14 +23,19 @@ class Layer(LayerVersion):
         # If we have specified an installation command, we must specify build commands.
         if install_command:
             build_command = [
-                'find /tmp/asset-output -type f -name "*.py[co]" -delete',
-                'find /tmp/asset-output -type d -name "__pycache__" -exec rm -rf {} +',
-                'find /tmp/asset-output -type d -name "*.dist-info" -exec rm -rf {} +',
-                'find /tmp/asset-output -type d -name "*.egg-info" -exec rm -rf {} +',
+                # Copy.
                 'cp -R /tmp/asset-output/. /asset-output/.',
                 'cp -R /asset-input/. /asset-output/.',
+
+                # Cleanup.
+                'find /asset-output/ -type f -name "*.py[co]" -delete',
+                'find /asset-output/ -type d -name "__pycache__" -exec rm -rf {} +',
+                'find /asset-output/ -type d -name "*.dist-info" -exec rm -rf {} +',
+                'find /asset-output/ -type d -name "*.egg-info" -exec rm -rf {} +',
+
+                # Validation.
                 'ls -la /asset-output/python/.',
-                'find /asset-output/. -type f -print0  | xargs -0 sha1sum | sha1sum',
+                'find /asset-output/ -type f -print0 | sort -z | xargs -0 sha1sum | sha1sum'
             ]
 
         # If build command is specified, bundling options should be specified too.

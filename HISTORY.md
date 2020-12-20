@@ -1,5 +1,9 @@
 # Release history
 
+### 1.9.4
+* Assets input may contain garbage files too, hence, apply
+cleanup commands directly on asset outputs folder.
+
 ### 1.9.3
 * Add builds badge.
 
