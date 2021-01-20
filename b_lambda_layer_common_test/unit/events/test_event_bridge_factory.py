@@ -17,4 +17,4 @@ def test_FUNC_emit_WITH_valid_event_EXPECT_event_successful() -> None:
         detail={}
     )
 
-    factory.emit(DummyBoto())
+    factory.emit(boto_client=DummyBoto())
