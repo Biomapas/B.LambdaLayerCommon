@@ -1,5 +1,8 @@
 # Release history
 
+### 1.10.0
+* Add factory to emit EventBridge events.
+
 ### 1.9.5
 * Make the code a little more robust and less error prone.
 

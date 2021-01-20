@@ -15,7 +15,7 @@ except ImportError as ex:
 
 
 class EventBridgeFactory:
-    __client = boto3.client('events')
+    __client: Optional[Any] = None
 
     def __init__(
             self,
@@ -30,6 +30,11 @@ class EventBridgeFactory:
         self.__event_bus_name = event_bus_name
 
     def emit(self, boto_client: Optional[Any] = None) -> None:
+        if not boto_client and not self.__client:
+            self.__client = boto3.client('events')
+
+        boto_client = boto_client or self.__client
+
         event_entry = dict(
             Source=self.__source,
             DetailType=self.__detail_type,
@@ -38,7 +43,7 @@ class EventBridgeFactory:
         )
 
         try:
-            response = (boto_client or self.__client).put_events(Entries=[event_entry])
+            response = boto_client.put_events(Entries=[event_entry])
 
             if response['FailedEntryCount'] != 0:
                 errors = '\n'.join(entry.get('ErrorMessage') for entry in response['Entries'])
