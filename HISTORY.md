@@ -1,5 +1,9 @@
 # Release history
 
+### 1.10.1
+* Add ability to specify if to fail to errors.
+* Try to read from env event bus name.
+
 ### 1.10.0
 * Add factory to emit EventBridge events.
 

@@ -9,9 +9,16 @@ logger = logging.getLogger(__name__)
 
 try:
     from b_lambda_layer_common.exceptions.container.internal_error import InternalError
+    from b_lambda_layer_common.util.os_parameter import OSParameter
 except ImportError as ex:
     logger.exception(f'Failed import.')
     from b_lambda_layer_common.source.python.b_lambda_layer_common.exceptions.container.internal_error import InternalError
+    from b_lambda_layer_common.source.python.b_lambda_layer_common.util.os_parameter import OSParameter
+
+try:
+    EVENT_BUS_NAME = OSParameter('EVENT_BUS_NAME').value
+except KeyError:
+    EVENT_BUS_NAME = None
 
 
 class EventBridgeFactory:
@@ -27,9 +34,9 @@ class EventBridgeFactory:
         self.__source = source
         self.__detail_type = detail_type
         self.__detail = detail
-        self.__event_bus_name = event_bus_name
+        self.__event_bus_name = event_bus_name or EVENT_BUS_NAME
 
-    def emit(self, boto_client: Optional[Any] = None) -> None:
+    def emit(self, fail_on_error: bool = True, boto_client: Optional[Any] = None) -> None:
         if not boto_client and not self.__client:
             self.__client = boto3.client('events')
 
@@ -47,6 +54,16 @@ class EventBridgeFactory:
 
             if response['FailedEntryCount'] != 0:
                 errors = '\n'.join(entry.get('ErrorMessage') for entry in response['Entries'])
-                raise InternalError(f'Failed to emit events: {errors}.')
+                message = f'Failed to emit events: {errors}.'
+
+                if fail_on_error:
+                    raise InternalError(message)
+
+                logger.error(message)
         except ClientError as ex:
-            raise InternalError(f'Failed to emit events ({str(ex)}).')
+            message = f'Failed to emit events ({str(ex)}).'
+
+            if fail_on_error:
+                raise InternalError(message)
+
+            logger.exception(message)
