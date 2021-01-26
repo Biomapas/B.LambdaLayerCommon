@@ -58,7 +58,7 @@ class HttpEndpoint:
 
         :return: Http response represented as dictionary.
         """
-        data = self.__call().data
+        data = self._call().data
 
         if data == b'':
             return {}
@@ -71,7 +71,7 @@ class HttpEndpoint:
 
         :return: Http response represented as bytes.
         """
-        return self.__call().data
+        return self._call().data
 
     def call_to_str(self) -> str:
         """
@@ -79,7 +79,7 @@ class HttpEndpoint:
 
         :return: Http response represented as string.
         """
-        data = self.__call().data
+        data = self._call().data
         encodings = ['utf-8', 'ISO-8859-1', 'Windows-1251', 'Windows-1252']
 
         for en in encodings:
@@ -96,9 +96,9 @@ class HttpEndpoint:
 
         :return: Http response.
         """
-        return self.__call()
+        return self._call()
 
-    def __call(self) -> HTTPResponse:
+    def _call(self) -> HTTPResponse:
         """
         Initiates a call to a specified endpoint with specified parameters.
 

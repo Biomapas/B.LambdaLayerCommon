@@ -1,5 +1,8 @@
 # Release history
 
+### 1.10.2
+* Allow for changing HttpEndpoint behavior.
+
 ### 1.10.1
 * Add ability to specify if to fail to errors.
 * Try to read from env event bus name.
