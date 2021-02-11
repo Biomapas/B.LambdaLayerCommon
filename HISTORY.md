@@ -1,5 +1,8 @@
 # Release history
 
+### 1.11.0
+* Add WebSocket Api Gateway message class to form consistent messages.
+
 ### 1.10.2
 * Allow for changing HttpEndpoint behavior.
 
