@@ -1,5 +1,8 @@
 # Release history
 
+### 1.11.1
+* Update DoNotUpdate class to be usable as a type.
+
 ### 1.11.0
 * Add WebSocket Api Gateway message class to form consistent messages.
 
