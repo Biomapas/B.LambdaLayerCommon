@@ -26,12 +26,12 @@ class Layer(LayerVersion):
         if boto3_version.version_type == PackageVersion.VersionType.LATEST:
             install_command.append(f'pip install boto3 --upgrade --upgrade-strategy eager -t /tmp/asset-output/python/')
         elif boto3_version.version_type == PackageVersion.VersionType.SPECIFIC:
-            install_command.append(f'pip install boto3=={boto3_version.version_string} -t /tmp/asset-output/python/')
+            install_command.append(f'pip install boto3=={boto3_version.version_string} --upgrade -t /tmp/asset-output/python/')
 
         if botocore_version.version_type == PackageVersion.VersionType.LATEST:
             install_command.append(f'pip install botocore --upgrade --upgrade-strategy eager -t /tmp/asset-output/python/')
         elif botocore_version.version_type == PackageVersion.VersionType.SPECIFIC:
-            install_command.append(f'pip install botocore=={botocore_version.version_string} -t /tmp/asset-output/python/')
+            install_command.append(f'pip install botocore=={botocore_version.version_string} --upgrade -t /tmp/asset-output/python/')
 
         # If we have specified an installation command, we must specify build commands.
         if install_command:
