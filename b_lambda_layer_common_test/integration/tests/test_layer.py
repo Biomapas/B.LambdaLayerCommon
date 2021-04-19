@@ -28,3 +28,4 @@ def test_RESOURCE_lambda_layer_WITH_deployed_lambda_function_EXPECT_execution_su
 
     # Assert that the result is as expected.
     assert data['Boto3Version'] == '1.16.35', data
+    assert data['BotocoreVersion'] == '1.19.35', data
