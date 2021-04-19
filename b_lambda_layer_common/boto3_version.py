@@ -8,4 +8,4 @@ class Boto3Version(PackageVersion):
     Use general ``PackageVersion`` class instead.
     """
 
-    pass
+    Boto3VersionType = PackageVersion.VersionType
