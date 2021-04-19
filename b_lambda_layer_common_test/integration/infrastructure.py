@@ -4,6 +4,7 @@ from b_aws_testing_framework.tools.cdk_testing.testing_stack import TestingStack
 
 from b_lambda_layer_common.boto3_version import Boto3Version
 from b_lambda_layer_common.layer import Layer
+from b_lambda_layer_common.package_version import PackageVersion
 
 
 class Infrastructure(TestingStack):
@@ -24,6 +25,7 @@ class Infrastructure(TestingStack):
                 'def handler(*args, **kwargs):\n'
                 '    return dict(\n'
                 '        Boto3Version=boto3.__version__\n'
+                '        BotocoreVersion=botocore.__version__\n'
                 '    )'
             ),
             handler='index.handler',
@@ -32,7 +34,9 @@ class Infrastructure(TestingStack):
                 Layer(
                     scope=self,
                     name=f'{self.global_prefix()}TestingLayer',
-                    boto3_version=Boto3Version.from_string_version('1.16.35'))
+                    boto3_version=Boto3Version.from_string_version('1.16.35'),
+                    botocore_version=PackageVersion.from_string_version('1.19.35')
+                )
             ]
         )
 

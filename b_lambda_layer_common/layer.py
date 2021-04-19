@@ -3,12 +3,19 @@ from typing import Optional, List
 from aws_cdk.aws_lambda import LayerVersion, Runtime, Code
 from aws_cdk.core import Stack, AssetHashType, BundlingOptions, BundlingDockerImage
 
-from b_lambda_layer_common.boto3_version import Boto3Version
+from b_lambda_layer_common.package_version import PackageVersion
 
 
 class Layer(LayerVersion):
-    def __init__(self, scope: Stack, name: str, boto3_version: Optional[Boto3Version] = None):
-        boto3_version = boto3_version or Boto3Version.dont_install()
+    def __init__(
+            self,
+            scope: Stack,
+            name: str,
+            boto3_version: Optional[PackageVersion] = None,
+            botocore_version: Optional[PackageVersion] = None
+    ):
+        boto3_version = boto3_version or PackageVersion.dont_install()
+        botocore_version = botocore_version or PackageVersion.dont_install()
 
         preinstall_command = ['mkdir -p /tmp/asset-output/python/']
         install_command = []
@@ -16,10 +23,15 @@ class Layer(LayerVersion):
         bundling_options = None
         asset_hash_type = None
 
-        if boto3_version.version_type == Boto3Version.Boto3VersionType.LATEST:
+        if boto3_version.version_type == PackageVersion.VersionType.LATEST:
             install_command.append(f'pip install boto3 --upgrade --upgrade-strategy eager -t /tmp/asset-output/python/')
-        elif boto3_version.version_type == Boto3Version.Boto3VersionType.SPECIFIC:
-            install_command.append(f'pip install boto3=={boto3_version.version_string} -t /tmp/asset-output/python/')
+        elif boto3_version.version_type == PackageVersion.VersionType.SPECIFIC:
+            install_command.append(f'pip install boto3=={boto3_version.version_string} --upgrade -t /tmp/asset-output/python/')
+
+        if botocore_version.version_type == PackageVersion.VersionType.LATEST:
+            install_command.append(f'pip install botocore --upgrade --upgrade-strategy eager -t /tmp/asset-output/python/')
+        elif botocore_version.version_type == PackageVersion.VersionType.SPECIFIC:
+            install_command.append(f'pip install botocore=={botocore_version.version_string} --upgrade -t /tmp/asset-output/python/')
 
         # If we have specified an installation command, we must specify build commands.
         if install_command:
