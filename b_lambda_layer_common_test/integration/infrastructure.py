@@ -21,12 +21,15 @@ class Infrastructure(TestingStack):
                 'from b_lambda_layer_common import exceptions\n'
                 'from b_lambda_layer_common import ssm\n'
                 'from b_lambda_layer_common import util\n'
-                'import boto3\n\n'
+                'import boto3\n'
+                'import botocore\n'
+                '\n\n'
                 'def handler(*args, **kwargs):\n'
                 '    return dict(\n'
-                '        Boto3Version=boto3.__version__\n'
-                '        BotocoreVersion=botocore.__version__\n'
+                '        Boto3Version=boto3.__version__,\n'
+                '        BotocoreVersion=botocore.__version__,\n'
                 '    )'
+                '\n'
             ),
             handler='index.handler',
             runtime=Runtime.PYTHON_3_6,
