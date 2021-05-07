@@ -1,6 +1,6 @@
 import json
 import logging
-from typing import Optional, Dict, Any, Union, Iterable, AnyStr
+from typing import Optional, Dict, Any, Union, Iterable, AnyStr, List, Tuple
 
 from urllib3 import HTTPResponse
 
@@ -23,7 +23,8 @@ class HttpEndpoint:
             endpoint_url: str,
             method: str,
             body: Optional[Union[Dict[Any, Any], Iterable[Any], AnyStr]] = None,
-            headers: Optional[Dict[str, str]] = None
+            headers: Optional[Dict[str, str]] = None,
+            fields: Optional[Any] = None
     ) -> None:
         """
         Constructor.
@@ -32,11 +33,16 @@ class HttpEndpoint:
         :param method: Http request method type.
         :param body: Body to include in request.
         :param headers: Headers to include in request.
+        :param fields: Fields can be one of the following:
+            # Regular query parameters or request body { key: value } pairs.
+            # Multi-value query parameters [ (key: value1), (key: value2) ] for reused key argument.
+            # Filetuple, read more it here: https://urllib3.readthedocs.io/en/latest/reference/urllib3.request.html#urllib3.request.RequestMethods.urlopen
         """
         self.__endpoint_url = endpoint_url
         self.__http_method = method
         self.__http_body = body
         self.__headers = headers or {}
+        self.__fields = fields
 
         assert isinstance(self.__endpoint_url, str), 'Expected string.'
         assert self.__http_method in ['GET', 'POST', 'PUT', 'DELETE', 'HEAD', 'OPTIONS'], 'Unsupported method.'
@@ -107,6 +113,7 @@ class HttpEndpoint:
         return HttpCall.call(
             method=self.http_method,
             url=self.endpoint_url,
+            fields=self.fields,
             headers=self.headers,
             body=self.http_body
         )
@@ -167,3 +174,13 @@ class HttpEndpoint:
             **headers,
             **(self.__headers or {})
         }
+
+    @property
+    def fields(self) -> Optional[Any]:
+        """
+        An appropriate encoding of fields based on the HTTP method used when performing the request.
+        An http request using urllib3.request.urlopen will be made using these fields.
+
+        :return: Fields parameter.
+        """
+        return self.__fields
