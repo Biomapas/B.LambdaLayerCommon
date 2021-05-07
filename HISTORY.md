@@ -1,5 +1,8 @@
 # Release history
 
+### 1.14.0
+* Add `fields` parameter support to `HttpEndpoint` class.
+
 ### 1.11.1
 * Update DoNotUpdate class to be usable as a type.
 
