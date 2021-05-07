@@ -1,6 +1,6 @@
 # Release history
 
-### 1.13.0
+### 1.14.0
 * Add `fields` parameter support to `HttpEndpoint` class.
 
 ### 1.11.1
