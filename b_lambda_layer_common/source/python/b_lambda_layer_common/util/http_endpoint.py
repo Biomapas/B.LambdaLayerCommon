@@ -1,6 +1,6 @@
 import json
 import logging
-from typing import Optional, Dict, Any, Union, Iterable, AnyStr, List, Tuple
+from typing import Optional, Dict, Any, Union, Iterable, AnyStr
 
 from urllib3 import HTTPResponse
 
