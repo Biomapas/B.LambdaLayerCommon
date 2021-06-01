@@ -1,5 +1,8 @@
 # Release history
 
+### 1.15.0
+* Add in-memory data caching functionality.
+
 ### 1.14.0
 * Add `fields` parameter support to `HttpEndpoint` class.
 
