@@ -66,3 +66,23 @@ class ResponseHeaders:
             # Indicate that response is of text type, csv subtype.
             'Content-Type': 'text/csv'
         })
+
+    @staticmethod
+    def text_headers() -> 'ResponseHeaders':
+        """
+        Plaintext file content type header.
+        """
+        return ResponseHeaders({
+            # Indicate that response is plaintext.
+            'Content-Type': f'text/plain'
+        })
+
+    @staticmethod
+    def html_headers(charset: str = 'UTF-8') -> 'ResponseHeaders':
+        """
+        Text file HTML content type header.
+        """
+        return ResponseHeaders({
+            # Indicate that response is of text type, html subtype.
+            'Content-Type': f'text/html; charset={charset}'
+        })
