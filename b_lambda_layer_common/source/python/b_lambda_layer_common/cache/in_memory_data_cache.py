@@ -3,6 +3,7 @@ from typing import Any, Callable, Set, Union
 
 logger = logging.getLogger(__name__)
 
+# TODO: "Refreshable" class should be moved to a more appropriate location.
 try:
     from b_lambda_layer_common.exceptions.container.internal_error import InternalError
     from b_lambda_layer_common.ssm.refreshable import Refreshable
@@ -12,9 +13,9 @@ except ImportError:
     from b_lambda_layer_common.source.python.b_lambda_layer_common.ssm.refreshable import Refreshable
 
 
-class DataCache(Refreshable):
+class InMemoryDataCache(Refreshable):
     """
-    Data cache implementation.
+    In-memory data cache implementation.
     """
 
     def __init__(self, max_age: int = 0):
@@ -37,7 +38,7 @@ class DataCache(Refreshable):
 
     def use_cache(self, pointer: Union[str, Set[str]], func: Callable, *args, **kwargs) -> Any:
         """
-        Cache function return values.
+        Caches function return values.
 
         :param pointer: A string or a set of strings used to reference cached data.
         :param func: A function whose return value will be cached.
@@ -57,6 +58,13 @@ class DataCache(Refreshable):
         return self.__get_data(pointer) or self.__add_data(pointer, func, *args, **kwargs)
 
     def __get_data(self, pointer: Union[str, Set[str]]) -> Any:
+        """
+        Retrieves data from cache if possible.
+
+        :param pointer: A string or a set of strings used to reference cached data.
+
+        :return: Data if it's cached, otherwise None.
+        """
         if isinstance(pointer, str) and pointer in self.__cache:
             data = self.__cache[pointer]
         elif isinstance(pointer, set) and pointer.issubset(self.__cache):
@@ -69,6 +77,17 @@ class DataCache(Refreshable):
         return data
 
     def __add_data(self, pointer: Union[str, Set[str]], func: Callable, *args, **kwargs) -> Any:
+        """
+        Adds data to cache.
+
+        :param pointer: A string or a set of strings used to reference cached data.
+        :param func: A function whose return value will be cached.
+        :param args: Arguments that will be passed to func.
+
+        :key kwargs: Keyword arguments that will be passed to func.
+
+        :return: Cached data.
+        """
         logger.info('Adding data to cache...')
 
         data = func(*args, **kwargs)
