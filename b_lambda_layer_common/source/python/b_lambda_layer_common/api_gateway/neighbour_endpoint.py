@@ -24,7 +24,8 @@ class NeighbourEndpoint:
             relative_endpoint: str,
             method: str,
             body: Optional[Union[Dict[Any, Any], Iterable[Any], AnyStr]] = None,
-            headers: Optional[Dict[str, str]] = None
+            headers: Optional[Dict[str, str]] = None,
+            fields: Optional[Any] = None
     ) -> None:
         self.__lambda_event = lambda_event
         self.__relative_endpoint = relative_endpoint
@@ -33,7 +34,8 @@ class NeighbourEndpoint:
             endpoint_url=self.full_endpoint,
             method=method,
             body=body,
-            headers=headers
+            headers=headers,
+            fields=fields
         )
 
         if self.authorization_token:
