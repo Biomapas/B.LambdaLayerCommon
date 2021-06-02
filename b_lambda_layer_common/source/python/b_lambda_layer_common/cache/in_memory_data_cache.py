@@ -94,12 +94,14 @@ class InMemoryDataCache(Refreshable):
 
         if isinstance(pointer, str):
             self.__cache.update({pointer: data})
-        else:
+        elif isinstance(pointer, set):
             if isinstance(data, dict):
                 self.__cache.update({key: data.get(key) for key in pointer})
             elif data is None:
                 self.__cache.update({key: None for key in pointer})
             else:
                 raise InternalError('Return value of func must be dict or None when pointer is of type set.')
+        else:
+            raise InternalError('Type of pointer value must be str or set.')
 
         return data
