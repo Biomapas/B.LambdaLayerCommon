@@ -55,3 +55,23 @@ class Response:
         }
 
         return r
+
+    @staticmethod
+    def any(
+            http_status: int,
+            headers: ResponseHeaders,
+            body: Any,
+            encoded: bool = False,
+    ) -> Dict[Any, Any]:
+        r = {
+            'isBase64Encoded': encoded,
+            'statusCode': http_status,
+            'body': body
+        }
+        if headers:
+            r['headers'] = headers.headers_dict
+
+        if body:
+            r['body'] = body
+
+        return r
