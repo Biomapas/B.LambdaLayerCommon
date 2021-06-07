@@ -5,6 +5,9 @@
 * Add `text/html` and `text/plain` headers.
 * Add missing `fields` parameter support to `NeighbourEndpoint` class.
 
+### 1.15.1
+* Improve function return value handling for `InMemoryDataCache` class.
+
 ### 1.15.0
 * Add in-memory data caching functionality.
 
