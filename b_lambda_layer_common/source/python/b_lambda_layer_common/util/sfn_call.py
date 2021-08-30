@@ -10,7 +10,7 @@ class SfnCall:
         self.__sfn_client = boto3.client('stepfunctions')
         self.__state_machine_arn = state_machine_arn
 
-    def call(self, data: Dict[Any, Any]):
+    def call(self, data: Dict[Any, Any]) -> Dict[Any, Any]:
         response = self.__sfn_client.start_sync_execution(
             stateMachineArn=self.__state_machine_arn,
             name=str(uuid.uuid4()),
