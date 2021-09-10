@@ -1,5 +1,8 @@
 # Release history
 
+### 1.18.0
+* Add V2 Layer class to enable installation of dependencies.
+
 ### 1.16.0
 * Add response method to return any type.
 * Add `text/html` and `text/plain` headers.
