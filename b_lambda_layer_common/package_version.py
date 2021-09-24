@@ -9,6 +9,7 @@ class PackageVersion:
         NONE = 'NONE'
         SPECIFIC = 'SPECIFIC'
         LATEST = 'LATEST'
+        CUSTOM = 'CUSTOM'
 
     def __init__(self, version: Optional[str] = None, version_type: Optional[VersionType] = None):
         self.__version = version
@@ -23,8 +24,11 @@ class PackageVersion:
         return self.__version_type
 
     @classmethod
-    def from_string_version(cls, version_string: str) -> 'PackageVersion':
-        return cls(version=version_string, version_type=cls.VersionType.SPECIFIC)
+    def from_string_version(cls, version_string: str, custom: bool = False) -> 'PackageVersion':
+        return cls(
+            version=version_string,
+            version_type=cls.VersionType.CUSTOM if custom else cls.VersionType.SPECIFIC
+        )
 
     @classmethod
     def latest(cls) -> 'PackageVersion':
