@@ -1,5 +1,9 @@
 # Release history
 
+### 1.19.0
+* General testing improvements.
+* Add Layer V2 integration tests.
+
 ### 1.18.0
 * Add V2 Layer class to enable installation of dependencies.
 
