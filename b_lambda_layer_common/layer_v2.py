@@ -4,6 +4,7 @@ from aws_cdk.aws_lambda import Code
 from aws_cdk.aws_lambda import LayerVersion, Runtime
 from aws_cdk.core import BundlingOptions, AssetHashType, BundlingDockerImage, DockerImage
 from aws_cdk.core import Stack
+
 from b_lambda_layer_common.package_version import PackageVersion
 
 
@@ -79,9 +80,22 @@ class LayerV2(LayerVersion):
             'rm -f /asset-output/python/__init__.py',
             'rm -f /asset-output/__init__.py',
 
-            # Validation.
+            # Debug.
+            'echo "\n---------------------------- asset input directory ----------------------------"',
+            'ls -la /asset-input/python/.',
+            'echo "\n---------------------------- asset output directory ----------------------------"',
             'ls -la /asset-output/python/.',
-            'find /asset-output/ -type f -print0 | sort -z | xargs -0 sha1sum | sha1sum'
+            'echo "\n---------------------------- asset output hash ----------------------------"',
+            'find /asset-output/ -type f -print0 | sort -z | xargs -0 sha1sum | sha1sum',
+
+            # Validation.
+            'e="Error - b_lambda_layer_common directory not found!"',
+            's="Directory b_lambda_layer_common exists. All good!"',
+            'echo "\n---------------------------- main directory in asset output check ----------------------------"',
+            'if [ ! -d /asset-output/python/b_lambda_layer_common ]; then echo "$e" && exit 1; else echo "$s"; fi',
+
+            # Success!
+            'echo "\n---------------- build successful ----------------\n"',
         ] if install_command else []
 
         # If build command is specified, bundling options should be specified too.

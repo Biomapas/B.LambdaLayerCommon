@@ -1,5 +1,8 @@
 # Release history
 
+### 1.20.0
+* Add validation when bundling with Docker.
+
 ### 1.19.0
 * General testing improvements.
 * Add Layer V2 integration tests.
