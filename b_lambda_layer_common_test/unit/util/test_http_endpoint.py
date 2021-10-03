@@ -1,5 +1,5 @@
 import pook
-from b_lambda_layer_common.source.python.b_lambda_layer_common.util.http_endpoint import HttpEndpoint
+from b_lambda_layer_common.util.http_endpoint import HttpEndpoint
 
 
 def test_FUNC_call_to_str_WITH_google_endpoint_EXPECT_successfull_call() -> None:

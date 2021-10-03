@@ -1,4 +1,4 @@
-from b_lambda_layer_common.source.python.b_lambda_layer_common.exceptions.http_exception import HttpException
+from b_lambda_layer_common.exceptions.http_exception import HttpException
 
 
 def test_FUNC_http_code_WITH_no_implementation_EXPECT_no_implemented_error_thrown() -> None:

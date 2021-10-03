@@ -4,9 +4,9 @@ from urllib3.exceptions import HTTPError
 import pook
 import pytest
 
-from b_lambda_layer_common.source.python.b_lambda_layer_common.exceptions.container.internal_error import InternalError
-from b_lambda_layer_common.source.python.b_lambda_layer_common.exceptions.container.not_reached_error import NotReachedError
-from b_lambda_layer_common.source.python.b_lambda_layer_common.util.http_call import HttpCall
+from b_lambda_layer_common.exceptions.container.internal_error import InternalError
+from b_lambda_layer_common.exceptions.container.not_reached_error import NotReachedError
+from b_lambda_layer_common.util.http_call import HttpCall
 
 
 def test_FUNC_call_WITH_responsive_url_EXPECT_call_successful() -> None:

@@ -1,4 +1,4 @@
-from b_lambda_layer_common.source.python.b_lambda_layer_common.events.event_bridge_factory import EventBridgeFactory
+from b_lambda_layer_common.events.event_bridge_factory import EventBridgeFactory
 
 
 def test_FUNC_emit_WITH_valid_event_EXPECT_event_successful() -> None:

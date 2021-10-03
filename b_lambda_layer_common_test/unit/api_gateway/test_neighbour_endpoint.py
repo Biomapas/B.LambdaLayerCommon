@@ -1,9 +1,8 @@
 import json
 
-from b_lambda_layer_common.source.python.b_lambda_layer_common.api_gateway.neighbour_endpoint import NeighbourEndpoint
-from b_lambda_layer_common.source.python.b_lambda_layer_common.exceptions.container.not_reached_error import \
-    NotReachedError
-from b_lambda_layer_common_test.unit.api_gateway import root
+from b_lambda_layer_common.api_gateway.neighbour_endpoint import NeighbourEndpoint
+from b_lambda_layer_common.exceptions.container.not_reached_error import NotReachedError
+from . import root
 
 with open(f'{root}/dummy_event.json', 'r') as file:
     dummy_event = json.loads(file.read())

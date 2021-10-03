@@ -3,8 +3,8 @@ from typing import Any
 
 from pytest import mark
 
-from b_lambda_layer_common.source.python.b_lambda_layer_common.api_gateway.response import Response
-from b_lambda_layer_common.source.python.b_lambda_layer_common.api_gateway.response_headers import ResponseHeaders
+from b_lambda_layer_common.api_gateway.response import Response
+from b_lambda_layer_common.api_gateway.response_headers import ResponseHeaders
 
 
 def test_FUNC_message_WITH_test_message_EXPECT_dictionary_returned() -> None:

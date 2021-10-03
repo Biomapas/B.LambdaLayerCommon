@@ -1,4 +1,4 @@
-from b_lambda_layer_common.source.python.b_lambda_layer_common.api_gateway.response_headers import ResponseHeaders
+from b_lambda_layer_common.api_gateway.response_headers import ResponseHeaders
 
 
 def test_FUNC_headers_dict_WITH_dummy_headers_EXPECT_same_dummy_headers() -> None:

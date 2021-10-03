@@ -1,7 +1,7 @@
 import json
 from decimal import Decimal
 
-from b_lambda_layer_common.source.python.b_lambda_layer_common.util.decimal_encoder import DecimalEncoder
+from b_lambda_layer_common.util.decimal_encoder import DecimalEncoder
 
 
 def test_FUNC_default_WITH_dictionary_with_decimals_EXPECT_successful_serialization() -> None:

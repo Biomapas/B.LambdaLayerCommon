@@ -1,5 +1,13 @@
 # Release history
 
+### 2.0.0
+* Complete refactor.
+* Fix ugly if/else imports.
+* Run unit tests inside lambda functions.
+* Use b_cfn_lambda_layer dependency.
+* Write more unit and integration tests.
+* Add README documentation.
+
 ### 1.20.0
 * Add validation when bundling with Docker.
 

@@ -1,6 +1,6 @@
 import json
 
-from b_lambda_layer_common.source.python.b_lambda_layer_common.ws_api_gateway.ws_message import WsMessage
+from b_lambda_layer_common.ws_api_gateway.ws_message import WsMessage
 
 
 def test_FUNC_success_WITH_text_EXPECT_ws_api_gateway_message_formed_and_encoded():

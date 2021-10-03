@@ -1,13 +1,15 @@
 from aws_cdk.aws_lambda import Function, Code, Runtime
 from aws_cdk.core import Stack
 from b_aws_testing_framework.tools.cdk_testing.testing_stack import TestingStack
+from b_cfn_lambda_layer.package_version import PackageVersion
 
-from b_lambda_layer_common.boto3_version import Boto3Version
 from b_lambda_layer_common.layer import Layer
-from b_lambda_layer_common.package_version import PackageVersion
 
 
 class Function1(Function):
+    """
+    Function that allows us to test whether correct versions are installed.
+    """
     def __init__(self, scope: Stack):
         super().__init__(
             scope=scope,
@@ -33,8 +35,10 @@ class Function1(Function):
                 Layer(
                     scope=scope,
                     name=f'{TestingStack.global_prefix()}TestingLayer1',
-                    boto3_version=Boto3Version.from_string_version('1.16.35'),
-                    botocore_version=PackageVersion.from_string_version('1.19.35')
+                    dependencies={
+                        'boto3': PackageVersion.from_string_version('1.16.35'),
+                        'botocore': PackageVersion.from_string_version('1.19.35'),
+                    }
                 )
             ]
         )

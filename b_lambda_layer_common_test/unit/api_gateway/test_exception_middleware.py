@@ -1,7 +1,5 @@
-from b_lambda_layer_common.source.python.b_lambda_layer_common.api_gateway.exception_middleware import \
-    exception_middleware
-from b_lambda_layer_common.source.python.b_lambda_layer_common.exceptions.container.dependency_error import \
-    DependencyError
+from b_lambda_layer_common.api_gateway.exception_middleware import exception_middleware
+from b_lambda_layer_common.exceptions.container.dependency_error import DependencyError
 
 
 def test_FUNC_exception_middleware_WITH_function_raises_dependency_error_EXPECT_dependency_error_code_424() -> None:
@@ -10,6 +8,7 @@ def test_FUNC_exception_middleware_WITH_function_raises_dependency_error_EXPECT_
 
     :return: No return.
     """
+
     @exception_middleware
     def dummy_function():
         raise DependencyError()

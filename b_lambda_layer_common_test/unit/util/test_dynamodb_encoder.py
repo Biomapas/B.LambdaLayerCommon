@@ -1,7 +1,7 @@
 import json
 from decimal import Decimal
 
-from b_lambda_layer_common.source.python.b_lambda_layer_common.util.dynamodb_encoder import DynamoDBEncoder
+from b_lambda_layer_common.util.dynamodb_encoder import DynamoDBEncoder
 
 
 def test_FUNC_default_WITH_decimals_and_sets_EXPECT_successful_serialization() -> None:

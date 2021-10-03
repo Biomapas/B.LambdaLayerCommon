@@ -1,4 +1,4 @@
-from b_lambda_layer_common.source.python.b_lambda_layer_common.ssm.refreshable import Refreshable
+from b_lambda_layer_common.ssm.refreshable import Refreshable
 
 
 def test_FUNC_refresh_on_error_WITH_error_EXPECT_value_refreshed():

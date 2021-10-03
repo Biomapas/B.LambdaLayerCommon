@@ -17,7 +17,7 @@ setup(
     packages=find_packages(exclude=[
         # Exclude virtual environment.
         'venv',
-        # Exclude test source files.
+        # Exclude test b_lambda_layer_common files.
         'b_lambda_layer_common_test'
     ]),
     description=(
@@ -27,13 +27,19 @@ setup(
     long_description_content_type="text/markdown",
     include_package_data=True,
     install_requires=[
-        "aws-cdk.aws_lambda>=1.54.0,<2.0.0",
+        # Used to create lambda layer.
+        'b-cfn-lambda-layer>=1.1.1,<2.0.0',
+        # Used for testing.
         'b-aws-testing-framework>=0.0.24,<1.0.0',
+        # Used for sending requests.
         "urllib3>=1.25.10,<2.0.0",
-        'pytest>=6.0.2,<7.0.0',
+        # Used for running tests with coverage.
         'pytest-cov>=2.10.1,<3.0.0',
+        # HTTP mocking tool.
         "pook>=1.0.1,<2.0.0",
+        # AWS SDK for python for invoking lambda functions.
         "boto3>=1.16.0,<2.0.0",
+        # This library includes nice ORM for dynamodb.
         "pynamodb>=5.0.3,<6.0.0"
     ],
     author='Laimonas Sutkus',

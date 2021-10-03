@@ -1,4 +1,4 @@
-from b_lambda_layer_common.source.python.b_lambda_layer_common.exceptions.b_exception import BException
+from b_lambda_layer_common.exceptions.b_exception import BException
 
 
 def test_FUNC_message_WITH_no_message_EXPECT_default_message() -> None:

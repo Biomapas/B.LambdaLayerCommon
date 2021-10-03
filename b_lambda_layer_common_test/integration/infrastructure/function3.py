@@ -1,12 +1,15 @@
 from aws_cdk.aws_lambda import Function, Code, Runtime
 from aws_cdk.core import Stack
 from b_aws_testing_framework.tools.cdk_testing.testing_stack import TestingStack
+from b_cfn_lambda_layer.package_version import PackageVersion
 
-from b_lambda_layer_common.layer_v2 import LayerV2
-from b_lambda_layer_common.package_version import PackageVersion
+from b_lambda_layer_common.layer import Layer
 
 
 class Function3(Function):
+    """
+    Function that allows us to check whether dependencies can be installed and custom code can be accessed.
+    """
     def __init__(self, scope: Stack):
         super().__init__(
             scope=scope,
@@ -33,7 +36,7 @@ class Function3(Function):
             handler='index.handler',
             runtime=Runtime.PYTHON_3_6,
             layers=[
-                LayerV2(
+                Layer(
                     scope=scope,
                     name=f'{TestingStack.global_prefix()}TestingLayer3',
                     dependencies={

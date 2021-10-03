@@ -3,7 +3,7 @@ from decimal import Decimal
 
 from pynamodb.attributes import MapAttribute
 
-from b_lambda_layer_common.source.python.b_lambda_layer_common.util.pynamodb_encoder import PynamoDBEncoder
+from b_lambda_layer_common.util.pynamodb_encoder import PynamoDBEncoder
 
 
 def test_FUNC_default_WITH_map_attribute_EXPECT_successful_serialization() -> None:

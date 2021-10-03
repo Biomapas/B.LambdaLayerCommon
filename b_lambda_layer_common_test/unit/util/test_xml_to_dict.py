@@ -1,6 +1,6 @@
 from xml.etree import ElementTree
 
-from b_lambda_layer_common.source.python.b_lambda_layer_common.util.xml_to_dict import XmlToDict
+from b_lambda_layer_common.util.xml_to_dict import XmlToDict
 
 
 def test_FUNC_convert_WITH_dummy_xml_string_EXPECT_successful_conversion() -> None:

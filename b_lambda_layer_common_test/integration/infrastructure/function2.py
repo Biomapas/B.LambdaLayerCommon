@@ -6,6 +6,9 @@ from b_lambda_layer_common.layer import Layer
 
 
 class Function2(Function):
+    """
+    Function that does not really test anything.
+    """
     def __init__(self, scope: Stack):
         super().__init__(
             scope=scope,

@@ -1,6 +1,6 @@
 import os
 
-from b_lambda_layer_common.source.python.b_lambda_layer_common.util.os_parameter import OSParameter
+from b_lambda_layer_common.util.os_parameter import OSParameter
 
 
 def test_FUNC_value_WITH_existing_os_value_EXPECT_value_returned():

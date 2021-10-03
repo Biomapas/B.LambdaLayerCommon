@@ -1,5 +1,5 @@
-from b_lambda_layer_common.source.python.b_lambda_layer_common.ssm.ssm_parameter import SSMParameter
-from b_lambda_layer_common_test.unit.ssm.dummy_ssm_client import DummySsmClient
+from b_lambda_layer_common.ssm.ssm_parameter import SSMParameter
+from .dummy_ssm_client import DummySsmClient
 
 
 def test_FUNC_refresh_AND_value_WITH_multiple_calls_EXPECT_values_refreshed():
