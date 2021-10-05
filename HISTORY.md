@@ -1,5 +1,8 @@
 # Release history
 
+### 2.0.1
+* Include .txt files.
+
 ### 2.0.0
 * Complete refactor.
 * Fix ugly if/else imports.
