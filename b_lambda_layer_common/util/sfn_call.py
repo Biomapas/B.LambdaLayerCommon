@@ -26,14 +26,13 @@ class SfnCall:
                 f'Read logs for more info.'
             )
 
-        output = json.loads(response.get('output', {}))
+        self.__output = json.loads(response.get('output', {}))
         # Add http-like handling that does not break anything.
-        output = self.__http_like_handling(output)
+        output = self.__http_like_handling()
 
         return output
 
-    @staticmethod
-    def __http_like_handling(output: Dict[Any, Any]) -> Dict[Any, Any]:
+    def __http_like_handling(self) -> Dict[str, Any]:
         """
         A function that treats responses/outputs from step functions state machine as an http response:
         for example, it looks for keys like "http_status" or "body".
@@ -43,8 +42,8 @@ class SfnCall:
         :return: Original output, if the output does not contain http-like features
             Body of the output otherwise.
         """
-        http_status: Optional[int] = output.get('http_status')
-        http_body: Dict[Any, Any] = output.get('body') or {}
+        http_status: Optional[int] = self.__output.get('http_status') or self.__output.get('statusCode')
+        http_body: Dict[str, Any] = self.__deserialize(self.__output)
 
         if isinstance(http_status, int):
             if http_status >= 400:
@@ -55,4 +54,11 @@ class SfnCall:
 
             return http_body
 
-        return output
+        return self.__output
+
+    @staticmethod
+    def __deserialize(http_body: Dict[Any, Any]) -> Dict[str, Any]:
+        if isinstance(body := http_body.get('body'), str):
+            return json.loads(body)
+
+        return http_body.get('body') or http_body
