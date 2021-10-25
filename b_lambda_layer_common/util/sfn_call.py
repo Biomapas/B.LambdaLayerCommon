@@ -1,6 +1,7 @@
 import json
 import uuid
 from typing import Any, Dict, Optional
+from json.decoder import JSONDecodeError
 
 import boto3
 
@@ -44,7 +45,14 @@ class SfnCall:
             Body of the output otherwise.
         """
         http_status: Optional[int] = output.get('http_status') or output.get('statusCode')
-        http_body: Dict[str, Any] = json.loads(body) if isinstance(body := output.get('body'), str) else output.get('body') or {}
+
+        if isinstance(body := output.get('body') or {}, str):
+            try:
+                http_body: Dict[str, Any] = json.loads(body)
+            except JSONDecodeError:
+                http_body: str = body
+        else:
+            http_body: Dict[str, Any] = body
 
         if isinstance(http_status, int):
             if http_status >= 400:
