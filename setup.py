@@ -40,7 +40,9 @@ setup(
         # AWS SDK for python for invoking lambda functions.
         "boto3>=1.16.0,<2.0.0",
         # This library includes nice ORM for dynamodb.
-        "pynamodb>=5.0.3,<6.0.0"
+        "pynamodb>=5.0.3,<6.0.0",
+        # A set that remembers its order, and allows looking up its items by their index in that order.
+        "ordered-set>=4.0.2,<5.0.0"
     ],
     author='Laimonas Sutkus',
     author_email='laimonas.sutkus@biomapas.com',
