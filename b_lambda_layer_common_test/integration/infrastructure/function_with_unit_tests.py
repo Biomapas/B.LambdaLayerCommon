@@ -32,7 +32,11 @@ class FunctionWithUnitTests(Function):
                         # Pook is used for HTTP mocking, therefore it is also needed here.
                         'pook': PackageVersion.from_string_version('1.0.1'),
                         # Not sure about this dependency. Lambda runtime throws errors if its missing.
-                        'aws-cdk.core': PackageVersion.from_string_version('1.99.0')
+                        'aws-cdk.core': PackageVersion.from_string_version('1.99.0'),
+                        # This dependency should be installed with 'pook' since it depends on 'jsonschema' which depends on this.
+                        # For some reason it doesn't.
+                        # Tests would fail with import error otherwise.
+                        'importlib-resources': PackageVersion.from_string_version('5.4.0')
                     }
                 )
             ]
