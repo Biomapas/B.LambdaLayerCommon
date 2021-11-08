@@ -45,8 +45,7 @@ class SfnCall:
             Body of the output otherwise (JSON deserialized, if possible).
         """
         http_status: Optional[int] = output.get('http_status') or output.get('statusCode')
-        http_body: Union[str, Dict[str, Any]] = None   
-        
+
         if isinstance(body := output.get('body'), str):
             try:
                 http_body = json.loads(body)
@@ -57,10 +56,7 @@ class SfnCall:
 
         if isinstance(http_status, int):
             if http_status >= 400:
-                raise ValueError(
-                    f'Step functions state machine response indicated error (http status {http_status}). '
-                    f'Response body: {http_body}.'
-                )
+                raise ValueError(json.dumps(output))
 
             return http_body
 

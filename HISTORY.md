@@ -1,5 +1,8 @@
 # Release history
 
+### 2.0.4
+* Simple return JSON of an output if SfnCall raised ValueError.
+
 ### 2.0.1
 * Include .txt files.
 
