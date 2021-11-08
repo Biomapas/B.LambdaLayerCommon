@@ -49,14 +49,19 @@ class SfnCall:
         if isinstance(body := output.get('body'), str):
             try:
                 http_body = json.loads(body)
-            except JSONDecodeError:
+            except (JSONDecodeError, TypeError):
                 http_body = body
         else:
             http_body = body
 
         if isinstance(http_status, int):
             if http_status >= 400:
-                raise ValueError(json.dumps(http_body))
+                try:
+                    error_message = json.dumps(http_body)
+                except (JSONDecodeError, TypeError):
+                    error_message = http_body
+
+                raise ValueError(error_message)
 
             return http_body
 

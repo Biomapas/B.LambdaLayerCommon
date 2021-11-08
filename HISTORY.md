@@ -1,5 +1,8 @@
 # Release history
 
+### 2.0.6
+* Handle errors when raising ValueError in SfnCall class.
+
 ### 2.0.4
 * Simple return JSON of an output if SfnCall raised ValueError.
 
