@@ -56,7 +56,7 @@ class SfnCall:
 
         if isinstance(http_status, int):
             if http_status >= 400:
-                raise ValueError(json.dumps(output))
+                raise ValueError(json.dumps(http_body))
 
             return http_body
 
