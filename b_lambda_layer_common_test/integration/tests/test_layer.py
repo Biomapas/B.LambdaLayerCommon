@@ -76,3 +76,23 @@ def test_RESOURCE_lambda_layer_WITH_deployed_lambda_function_3_EXPECT_execution_
     # Assert that the result is as expected.
     assert data['Boto3Version']
     assert data['BotocoreVersion']
+
+def test_RESOURCE_lambda_layer_WITH_deployed_lambda_function_4_EXPECT_execution_successful():
+    """
+    Test whether a layer provides necessary functionality.
+
+    :return: No return.
+    """
+    # Create client for Lambda service.
+    lambda_client = Credentials().boto_session.client('lambda')
+
+    # Invoke a specific lambda function.
+    response = lambda_client.invoke(
+        FunctionName=MainStack.get_output(MainStack.LAMBDA_FUNCTION_4_NAME_KEY),
+        InvocationType='RequestResponse',
+        Payload=json.dumps({'heartbeat': True})
+    )
+
+    # If Lambda function was not executed, it returns a string 'null'.
+    data = response['Payload'].read().decode()
+    assert data == 'null'
