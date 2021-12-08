@@ -9,12 +9,13 @@ def test_FUNC_with_default_skip_invocation_EXPECT_successful_return():
     :return: No return.
     """
     item = {'heartbeat': True}
+    context = ''
 
     @skip_invocation()
-    def handler(event):
+    def handler(event, context):
         return event
 
-    response = handler(item)
+    response = handler(item, context)
     assert response is not None
 
 def test_FUNC_with_bad_determinator_type_EXPECT_successful_return():
@@ -25,12 +26,13 @@ def test_FUNC_with_bad_determinator_type_EXPECT_successful_return():
     :return: No return.
     """
     item = {'heartbeat': True}
+    context = ''
 
     @skip_invocation(determinator={'test': 'test'})
-    def handler(event):
+    def handler(event, context):
         return event
 
-    response = handler(item)
+    response = handler(item, context)
     assert response is not None
 
 def test_FUNC_with_string_determinator_EXPECT_none_return():
@@ -41,12 +43,13 @@ def test_FUNC_with_string_determinator_EXPECT_none_return():
     :return: No return.
     """
     item = {'heartbeat': True}
+    context = ''
 
     @skip_invocation(determinator='heartbeat')
-    def handler(event):
+    def handler(event, context):
         return event
 
-    response = handler(item)
+    response = handler(item, context)
     assert response is None
 
 def test_FUNC_with_string_determinator_EXPECT_successful_return():
@@ -57,12 +60,13 @@ def test_FUNC_with_string_determinator_EXPECT_successful_return():
     :return: No return.
     """
     item = {'heartbeat': True}
+    context = ''
 
     @skip_invocation(determinator='test')
-    def handler(event):
+    def handler(event, context):
         return event
 
-    response = handler(item)
+    response = handler(item, context)
     assert response is not None
 
 def test_FUNC_with_bool_determinator_EXPECT_none_return():
@@ -73,12 +77,13 @@ def test_FUNC_with_bool_determinator_EXPECT_none_return():
     :return: No return.
     """
     item = {'heartbeat': True}
+    context = ''
 
     @skip_invocation(determinator=True)
-    def handler(event):
+    def handler(event, context):
         return event
 
-    response = handler(item)
+    response = handler(item, context)
     assert response is None
 
 def test_FUNC_with_bool_determinator_EXPECT_successful_return():
@@ -89,12 +94,13 @@ def test_FUNC_with_bool_determinator_EXPECT_successful_return():
     :return: No return.
     """
     item = {'heartbeat': True}
+    context = ''
 
     @skip_invocation(determinator=False)
-    def handler(event):
+    def handler(event, context):
         return event
 
-    response = handler(item)
+    response = handler(item, context)
     assert response is not None
 
 def test_FUNC_with_callable_determinator_EXPECT_none_return():
@@ -105,14 +111,15 @@ def test_FUNC_with_callable_determinator_EXPECT_none_return():
     :return: No return.
     """
     item = {'heartbeat': True}
+    context = ''
 
-    is_even = lambda x: x % 2 == 0
+    is_heartbeat = lambda e, c: 'heartbeat' in e
 
-    @skip_invocation(determinator=is_even(4))
-    def handler(event):
+    @skip_invocation(determinator=is_heartbeat)
+    def handler(event, context):
         return event
 
-    response = handler(item)
+    response = handler(item, context)
     assert response is None
 
 def test_FUNC_with_callable_determinator_EXPECT_successful_return():
@@ -123,12 +130,13 @@ def test_FUNC_with_callable_determinator_EXPECT_successful_return():
     :return: No return.
     """
     item = {'heartbeat': True}
+    context = ''
 
-    is_even = lambda x: x % 2 == 0
+    is_ping = lambda e, c: 'ping' in e
 
-    @skip_invocation(determinator=is_even(5))
-    def handler(event):
+    @skip_invocation(determinator=is_ping)
+    def handler(event, context):
         return event
 
-    response = handler(item)
+    response = handler(item, context)
     assert response is not None
