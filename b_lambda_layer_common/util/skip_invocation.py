@@ -2,7 +2,7 @@ import functools
 from typing import Any, Callable, Dict, Optional, Union
 
 
-def skip_invocation(determinator: Optional[Union[str, bool, Callable[[Dict, Any], bool]]] = None) -> Union[Callable, None]:
+def skip_invocation(determinator: Optional[Union[str, bool, Callable[[Dict[str, Any], Any], bool]]] = None) -> Union[Callable, None]:
     """
     A decorator which allows to skip decorated function's execution if certain conditions are met.
     By default it returns decorated function's execution if no arguments are provided.
