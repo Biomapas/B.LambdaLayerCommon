@@ -24,39 +24,43 @@ def skip_invocation(determinator: Optional[Union[str, bool, Callable[[Dict, Any]
     When no parameter is passed as decorator's determinator.
 
     >>> item = {'heartbeat': True}
+    >>> context = ''
     >>> @skip_invocation()
-    ... def handler(event):
+    ... def handler(event, context):
     ...     return event
-    >>> handler(item)
+    >>> handler(item, context)
     {'heartbeat': True}
 
     When a 'bool' of value True is provided (decorated function does not invoke).
 
     >>> item = {'heartbeat': True}
+    >>> context = ''
     >>> @skip_invocation(determinator=True)
-    ... def handler(event):
+    ... def handler(event, context):
     ...     return event
-    >>> handler(item)
+    >>> handler(item, context)
     >>>
 
     When a 'str' is provided which exists in event's 'dict' (decorated function does not invoke).
 
     >>> item = {'heartbeat': True}
+    >>> context = ''
     >>> @skip_invocation(determinator="heartbeat")
-    ... def handler(event):
+    ... def handler(event, context):
     ...     return event
-    >>> handler(item)
+    >>> handler(item, context)
     >>>
 
     When a callable is provided which evaluates to True.
     Callable should take 2 arguments - Lambda function's event and context.
 
     >>> item = {'heartbeat': True}
+    >>> context = ''
     >>> is_heartbeat = lambda e, c: "heartbeat" in e
     >>> @skip_invocation(determinator=is_heartbeat)
-    ... def handler(event):
+    ... def handler(event, context):
     ...     return event
-    >>> handler(item)
+    >>> handler(item, context)
     >>>
 
     """
