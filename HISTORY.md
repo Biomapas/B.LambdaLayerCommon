@@ -1,5 +1,8 @@
 # Release history
 
+### 2.1.2
+* Add a list bytes batching utility.
+
 ### 2.0.6
 * Handle errors when raising ValueError in SfnCall class.
 
