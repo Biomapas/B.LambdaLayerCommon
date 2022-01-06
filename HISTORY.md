@@ -2,6 +2,7 @@
 
 ### 2.2.0
 * Add field validator in util directory. Simple string validation.
+* Add KMS attribute for PynamoDB.
 
 ### 2.1.2
 * Add a list bytes batching utility.
