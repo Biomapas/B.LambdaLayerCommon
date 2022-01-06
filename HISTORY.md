@@ -1,5 +1,8 @@
 # Release history
 
+### 2.2.1
+* Fix KmsAttribute by introducing base64 encode/decode.
+
 ### 2.2.0
 * Add field validator in util directory. Simple string validation.
 * Add KMS attribute for PynamoDB.

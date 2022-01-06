@@ -1,3 +1,4 @@
+import base64
 from typing import Optional, Any
 
 from pynamodb.attributes import UnicodeAttribute
@@ -12,12 +13,14 @@ class KmsAttribute(UnicodeAttribute):
 
     def serialize(self, value: Optional[str] = None) -> Optional[str]:
         if value:
-            encrypted = self.__encrypt(value).decode()
-            return super().serialize(encrypted)
+            encrypted: bytes = self.__encrypt(value)
+            encrypted_base64: str = base64.b64encode(encrypted).decode()
+            return super().serialize(encrypted_base64)
 
     def deserialize(self, value: Optional[str] = None) -> Optional[str]:
         if value:
-            decrypted = self.__decrypt(value.encode())
+            base64_decoded_value = base64.b64decode(value)
+            decrypted = self.__decrypt(base64_decoded_value)
             return super().deserialize(decrypted)
 
     def __encrypt(self, sensitive_data: str) -> bytes:
