@@ -1,5 +1,8 @@
 # Release history
 
+### 2.2.0
+* Add field validator in util directory. Simple string validation.
+
 ### 2.1.2
 * Add a list bytes batching utility.
 
