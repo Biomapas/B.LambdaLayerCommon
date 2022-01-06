@@ -7,8 +7,8 @@ def test_FUNC_serialize_WITH_null_value_EXPECT_serialzied() -> None:
 
     :return: No return.
     """
-    attribute = KmsAttribute()
-    attribute.serialize(None)
+    att = KmsAttribute(None, 'arn')
+    att.serialize(None)
 
 
 def test_FUNC_deserialize_WITH_null_value_EXPECT_deserialzied() -> None:
@@ -17,5 +17,5 @@ def test_FUNC_deserialize_WITH_null_value_EXPECT_deserialzied() -> None:
 
     :return: No return.
     """
-    attribute = KmsAttribute()
-    attribute.deserialize(None)
+    att = KmsAttribute(None, 'arn')
+    att.deserialize(None)

@@ -1,14 +1,15 @@
-from typing import Optional
+from typing import Optional, Any
 
-from b_lambda_layer_common.util.os_parameter import OSParameter
-from boto3 import client
 from pynamodb.attributes import UnicodeAttribute
-
-KMS_CLIENT = client('kms')
-KMS_CMK_ARN = OSParameter('KMS_CMK_ARN')
 
 
 class KmsAttribute(UnicodeAttribute):
+    def __init__(self, kms_boto_client: Any, kms_arn: str, *args, **kwargs):
+        self.__kms_arn = kms_arn
+        self.__kms_boto_client = kms_boto_client
+
+        super().__init__(*args, **kwargs)
+
     def serialize(self, value: Optional[str] = None) -> Optional[str]:
         if value:
             encrypted = self.__encrypt(value).decode()
@@ -19,16 +20,14 @@ class KmsAttribute(UnicodeAttribute):
             decrypted = self.__decrypt(value.encode())
             return super().deserialize(decrypted)
 
-    @staticmethod
-    def __encrypt(sensitive_data: str) -> bytes:
-        return KMS_CLIENT.encrypt(
-            KeyId=KMS_CMK_ARN.value,
+    def __encrypt(self, sensitive_data: str) -> bytes:
+        return self.__kms_boto_client.encrypt(
+            KeyId=self.__kms_arn,
             Plaintext=sensitive_data.encode()
         )['CiphertextBlob']
 
-    @staticmethod
-    def __decrypt(sensitive_data: bytes) -> str:
-        return KMS_CLIENT.decrypt(
-            KeyId=KMS_CMK_ARN.value,
+    def __decrypt(self, sensitive_data: bytes) -> str:
+        return self.__kms_boto_client.decrypt(
+            KeyId=self.__kms_arn,
             CiphertextBlob=sensitive_data
         )['Plaintext'].decode()
