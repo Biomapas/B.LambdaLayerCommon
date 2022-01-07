@@ -1,5 +1,8 @@
 # Release history
 
+### 2.2.2
+* Improve parsing of JWT claims from API Gateway authorizer output.
+
 ### 2.2.1
 * Fix KmsAttribute by introducing base64 encode/decode.
 

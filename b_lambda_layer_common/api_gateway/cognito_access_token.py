@@ -16,7 +16,10 @@ class CognitoAccessToken:
         """
         try:
             self.__auth_token = event['headers']['authorization']
-            self.__claims = event['requestContext']['authorizer']['claims']
+
+            # If JWT claims are not located in event.requestContext.authorizer.claims
+            # they could be found in event.requestContext.authorizer instead.
+            self.__claims = event['requestContext']['authorizer']['claims'] or event['requestContext']['authorizer']
 
             assert self.token_use == 'access'
         except (KeyError, AssertionError) as ex:
