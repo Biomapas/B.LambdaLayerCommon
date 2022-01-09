@@ -2,7 +2,7 @@ from os.path import dirname, abspath
 from typing import Optional, List, Dict
 
 from aws_cdk.aws_lambda import Runtime
-from aws_cdk.core import Stack, DockerImage
+from aws_cdk.core import Stack, DockerImage, BundlingDockerImage
 from b_cfn_lambda_layer.lambda_layer import LambdaLayer
 from b_cfn_lambda_layer.package_version import PackageVersion
 
@@ -24,7 +24,8 @@ class Layer(LambdaLayer):
             include_source_path_directory=True,
             additional_pip_install_args=additional_pip_install_args,
             dependencies=dependencies,
-            docker_image=docker_image
+            # Try to use Python 3.8 environment to build packages.
+            docker_image=docker_image or BundlingDockerImage.from_registry('python:3.8')
         )
 
     @staticmethod

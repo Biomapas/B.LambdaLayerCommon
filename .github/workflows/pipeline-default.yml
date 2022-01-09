@@ -30,7 +30,7 @@ jobs:
           node --version
           npm --version
 
-          npm install -g aws-cdk
+          npm install -g aws-cdk@1.x
 
           python -m pip install . --upgrade
           python -m pip list
