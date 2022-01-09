@@ -24,7 +24,7 @@ class Layer(LambdaLayer):
             include_source_path_directory=True,
             additional_pip_install_args=additional_pip_install_args,
             dependencies=dependencies,
-            # Try to use Python 3.8 environment to build packages.
+            # Ensure Python 3.8 matches everywhere.
             docker_image=docker_image or BundlingDockerImage.from_registry('python:3.8')
         )
 
@@ -35,7 +35,9 @@ class Layer(LambdaLayer):
     @staticmethod
     def runtimes() -> Optional[List[Runtime]]:
         return [
-            Runtime.PYTHON_3_8,
+            Runtime.PYTHON_3_6,
             Runtime.PYTHON_3_7,
+            # Even though this layer supports more python versions,
+            # It is recommended to use Python 3.8.
             Runtime.PYTHON_3_8
         ]

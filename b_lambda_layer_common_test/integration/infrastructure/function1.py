@@ -30,6 +30,7 @@ class Function1(Function):
                 '\n'
             ),
             handler='index.handler',
+            # Ensure Python 3.8 matches everywhere.
             runtime=Runtime.PYTHON_3_8,
             layers=[
                 Layer(

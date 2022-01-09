@@ -31,7 +31,7 @@ class Infrastructure(TestingStack):
                 '\n'
             ),
             handler='index.handler',
-            # Ensure this runtime is the same as defined in pipelines.
+            # Ensure Python 3.8 matches everywhere.
             runtime=Runtime.PYTHON_3_8,
             layers=[
                 Layer(
@@ -53,6 +53,7 @@ class Infrastructure(TestingStack):
             id=f'{self.global_prefix()}TestingFunction2',
             code=Code.from_inline('def handler(*args, **kwargs): return 200'),
             handler='index.handler',
+            # Ensure Python 3.8 matches everywhere.
             runtime=Runtime.PYTHON_3_8,
             layers=[Layer(scope=self, name=f'{self.global_prefix()}TestingLayer2')]
         )

@@ -1,5 +1,10 @@
 # Release history
 
+### 2.3.1
+* If you want to use `cryptography` module, you must use Python 3.8.
+* Add explanations for Python 3.8 versions.
+* Fix supported layer python versions.
+
 ### 2.3.0
 * Add Fernet encryption PynamoDB attribute.
 
