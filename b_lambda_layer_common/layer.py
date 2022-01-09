@@ -34,7 +34,7 @@ class Layer(LambdaLayer):
     @staticmethod
     def runtimes() -> Optional[List[Runtime]]:
         return [
-            Runtime.PYTHON_3_6,
+            Runtime.PYTHON_3_8,
             Runtime.PYTHON_3_7,
             Runtime.PYTHON_3_8
         ]

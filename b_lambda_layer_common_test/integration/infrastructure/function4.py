@@ -21,6 +21,6 @@ class Function4(Function):
                 '    return event'
             ),
             handler='index.handler',
-            runtime=Runtime.PYTHON_3_6,
+            runtime=Runtime.PYTHON_3_8,
             layers=[Layer(scope=scope, name=f'{TestingStack.global_prefix()}TestingLayer4')]
         )

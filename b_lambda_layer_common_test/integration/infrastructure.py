@@ -53,6 +53,6 @@ class Infrastructure(TestingStack):
             id=f'{self.global_prefix()}TestingFunction2',
             code=Code.from_inline('def handler(*args, **kwargs): return 200'),
             handler='index.handler',
-            runtime=Runtime.PYTHON_3_6,
+            runtime=Runtime.PYTHON_3_8,
             layers=[Layer(scope=self, name=f'{self.global_prefix()}TestingLayer2')]
         )
