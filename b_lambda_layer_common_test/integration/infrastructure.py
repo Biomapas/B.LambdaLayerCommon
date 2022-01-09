@@ -31,7 +31,8 @@ class Infrastructure(TestingStack):
                 '\n'
             ),
             handler='index.handler',
-            runtime=Runtime.PYTHON_3_6,
+            # Ensure this runtime is the same as defined in pipelines.
+            runtime=Runtime.PYTHON_3_8,
             layers=[
                 Layer(
                     scope=self,
