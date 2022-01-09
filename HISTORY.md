@@ -1,5 +1,8 @@
 # Release history
 
+### 2.3.0
+* Add Fernet encryption PynamoDB attribute.
+
 ### 2.2.1
 * Fix KmsAttribute by introducing base64 encode/decode.
 
