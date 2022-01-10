@@ -1,7 +1,15 @@
 # Release history
 
-### 2.2.2
+### 2.3.2
 * Improve parsing of JWT claims from API Gateway authorizer output.
+
+### 2.3.1
+* If you want to use `cryptography` module, you must use Python 3.8.
+* Add explanations for Python 3.8 versions.
+* Fix supported layer python versions.
+
+### 2.3.0
+* Add Fernet encryption PynamoDB attribute.
 
 ### 2.2.1
 * Fix KmsAttribute by introducing base64 encode/decode.

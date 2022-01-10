@@ -42,7 +42,12 @@ setup(
         # This library includes nice ORM for dynamodb.
         "pynamodb>=5.0.3,<6.0.0",
         # A set that remembers its order, and allows looking up its items by their index in that order.
-        "ordered-set>=4.0.2,<5.0.0"
+        "ordered-set>=4.0.2,<5.0.0",
+        # Cryptography utilities. NOTE! This library is extremely python-version-specific.
+        # Therefore please take a close look on which python version it was built/installed.
+        # Cryptography might not work if build environment python version is not the same as
+        # your Lambda functions python version. For safety, use Python 3.8.
+        "cryptography>=36.0.0,<37.0.0"
     ],
     author='Laimonas Sutkus',
     author_email='laimonas.sutkus@biomapas.com',

@@ -34,7 +34,8 @@ class Function3(Function):
                 '\n'
             ),
             handler='index.handler',
-            runtime=Runtime.PYTHON_3_6,
+            # Ensure Python 3.8 matches everywhere.
+            runtime=Runtime.PYTHON_3_8,
             layers=[
                 Layer(
                     scope=scope,

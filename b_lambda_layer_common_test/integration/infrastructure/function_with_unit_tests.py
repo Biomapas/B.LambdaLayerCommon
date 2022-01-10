@@ -18,6 +18,7 @@ class FunctionWithUnitTests(Function):
             id=f'{TestingStack.global_prefix()}FunctionWithUnitTests',
             code=Code.from_asset(root),
             handler='handler.handler',
+            # Ensure Python 3.8 matches everywhere.
             runtime=Runtime.PYTHON_3_8,
             timeout=Duration.minutes(5),
             memory_size=512,
