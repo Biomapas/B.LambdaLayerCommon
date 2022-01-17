@@ -1,5 +1,8 @@
 # Release history
 
+### 2.3.2
+* Improve parsing of JWT claims from API Gateway authorizer output.
+
 ### 2.3.1
 * If you want to use `cryptography` module, you must use Python 3.8.
 * Add explanations for Python 3.8 versions.
