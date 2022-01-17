@@ -1,5 +1,8 @@
 # Release history
 
+### 2.3.3
+* Fix api empty dict serialization.
+
 ### 2.3.2
 * Improve parsing of JWT claims from API Gateway authorizer output.
 

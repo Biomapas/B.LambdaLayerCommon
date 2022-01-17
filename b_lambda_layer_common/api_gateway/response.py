@@ -26,10 +26,10 @@ class Response:
             'statusCode': http_status
         }
 
-        if headers:
+        if headers is not None:
             r['headers'] = headers.headers_dict
 
-        if body:
+        if body is not None:
             r['body'] = json.dumps(body, cls=json_encoder)
 
         return r
