@@ -1,5 +1,8 @@
 # Release history
 
+### 2.3.4
+* Add functionality to pass Boto3 client to SfnCall function for multithreding support.
+
 ### 2.3.3
 * Fix api empty dict serialization.
 
