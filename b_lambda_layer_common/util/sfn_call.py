@@ -4,11 +4,16 @@ from typing import Any, Dict, Optional, Union
 from json.decoder import JSONDecodeError
 
 import boto3
+from botocore.client import BaseClient
 
 
 class SfnCall:
-    def __init__(self, state_machine_arn: str):
-        self.__sfn_client = boto3.client('stepfunctions')
+    def __init__(self, state_machine_arn: str, sfn_client: BaseClient = None):
+        if sfn_client:
+            self.__sfn_client = sfn_client
+        else:
+            self.__sfn_client = boto3.client('stepfunctions')
+
         self.__state_machine_arn = state_machine_arn
 
     def call(self, data: Dict[Any, Any]) -> Union[str, Dict[str, Any]]:
