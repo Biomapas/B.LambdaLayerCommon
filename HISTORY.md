@@ -1,5 +1,8 @@
 # Release history
 
+### 2.4.0
+* Add Boto3 client validation under SfnCall function.
+
 ### 2.3.4
 * Add functionality to pass Boto3 client to SfnCall function for multithreding support.
 
