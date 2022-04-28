@@ -1,5 +1,9 @@
 # Release history
 
+### 3.0.0
+* Use the newest base layer `B.CfnLambdaLayer` 
+  which uses new asset bundling mechanism (Dockerfile).
+
 ### 2.4.0
 * Add Boto3 client validation under SfnCall function.
 

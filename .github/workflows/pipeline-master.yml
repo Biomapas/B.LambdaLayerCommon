@@ -34,11 +34,11 @@ jobs:
           npm install -g aws-cdk@1.x
 
           python -m pip install . --upgrade
+          pip install -r b_lambda_layer_common_test/requirements.txt
           python -m pip list
 
       - name: UnitTest
         run: pytest --cov=b_lambda_layer_common b_lambda_layer_common_test/unit --cov-fail-under=80
-
 
       - name: IntegrationTest
         run: |

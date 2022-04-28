@@ -2,7 +2,7 @@ from os.path import dirname, abspath
 from typing import Optional, List, Dict
 
 from aws_cdk.aws_lambda import Runtime
-from aws_cdk.core import Stack, DockerImage, BundlingDockerImage
+from aws_cdk.core import Stack
 from b_cfn_lambda_layer.lambda_layer import LambdaLayer
 from b_cfn_lambda_layer.package_version import PackageVersion
 
@@ -14,18 +14,22 @@ class Layer(LambdaLayer):
             name: str,
             additional_pip_install_args: Optional[str] = None,
             dependencies: Optional[Dict[str, PackageVersion]] = None,
-            docker_image: Optional[DockerImage] = None,
+            docker_image: Optional[str] = None,
     ) -> None:
         super().__init__(
             scope,
             name,
             source_path=self.get_source_path(),
             code_runtimes=self.runtimes(),
-            include_source_path_directory=True,
             additional_pip_install_args=additional_pip_install_args,
-            dependencies=dependencies,
+            dependencies={
+                **(dependencies or {}),
+                'pynamodb': PackageVersion.from_string_version('5.2.1'),
+                'ordered-set': PackageVersion.from_string_version('4.1.0'),
+                'cryptography': PackageVersion.from_string_version('37.0.1')
+            },
             # Ensure Python 3.8 matches everywhere.
-            docker_image=docker_image or BundlingDockerImage.from_registry('python:3.8')
+            docker_image=docker_image or 'python:3.8'
         )
 
     @staticmethod
