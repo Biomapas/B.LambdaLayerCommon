@@ -5,15 +5,21 @@ from json.decoder import JSONDecodeError
 
 import boto3
 from botocore.client import BaseClient
+from botocore.config import Config
 
 
 class SfnCall:
+    CUSTOM_BOTO3_CONFIG = Config(
+        # Give a maximum timeout which is equal to maximum lambda execution time.
+        read_timeout=900
+    )
+
     def __init__(self, state_machine_arn: str, client: BaseClient = None):
         service_name = 'stepfunctions'
         if client and client.meta.service_model.service_name != service_name:
             raise ValueError(f'Improper Boto3 client is provided. Only "{service_name}" client is accepted.')
 
-        self.__sfn_client = client or boto3.client(service_name)
+        self.__sfn_client = client or boto3.client(service_name, config=self.CUSTOM_BOTO3_CONFIG)
         self.__state_machine_arn = state_machine_arn
 
     def call(self, data: Dict[Any, Any]) -> Union[str, Dict[str, Any]]:

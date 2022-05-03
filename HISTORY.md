@@ -1,5 +1,8 @@
 # Release history
 
+### 3.0.1
+* Extend boto3 step-functions call timeout to maximum lambda execution time (15 minutes).
+
 ### 3.0.0
 * Use the newest base layer `B.CfnLambdaLayer` 
   which uses new asset bundling mechanism (Dockerfile).
