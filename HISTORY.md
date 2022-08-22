@@ -1,5 +1,9 @@
 # Release history
 
+### 3.1.0
+* Extract api key from lambda event.
+* Extract body from lambda event.
+
 ### 3.0.1
 * Extend boto3 step-functions call timeout to maximum lambda execution time (15 minutes).
 

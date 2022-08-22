@@ -4,6 +4,8 @@ import urllib.parse
 from json import JSONDecodeError
 from typing import Dict, Any
 
+from b_lambda_layer_common.exceptions.container.bad_request_error import BadRequestError
+
 
 class Body:
     """
@@ -16,8 +18,11 @@ class Body:
 
         :param event: Lambda event.
         """
-        self.__body = event['body']
+        self.__event = event
         self.__is_base_64_encoded = event.get('isBase64Encoded', False)
+
+    def __is_private_api(self) -> bool:
+        return bool(self.__event.get('private_api', False))
 
     def from_urlencoded(self) -> Dict[str, Any]:
         """
@@ -55,7 +60,10 @@ class Body:
 
         :return: Event body as a dictionary.
         """
-        return json.loads(self.decoded())
+        try:
+            return json.loads(self.decoded())
+        except JSONDecodeError as ex:
+            raise BadRequestError(f'Malformed JSON body: {ex}.')
 
     def decoded(self) -> str:
         """
@@ -68,7 +76,10 @@ class Body:
 
         :return: Event body in string format.
         """
-        if self.__is_base_64_encoded:
-            return base64.b64decode(self.__body).decode()
+        if self.__is_private_api():
+            return json.dumps(self.__event)
 
-        return self.__body
+        if self.__is_base_64_encoded:
+            return base64.b64decode(self.__event['body']).decode()
+
+        return self.__event['body']

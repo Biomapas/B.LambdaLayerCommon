@@ -34,3 +34,20 @@ def test_FUNC_from_json_WITH_json_serialized_body_EXPECT_successfuly_parsed() ->
     parsed = Body(dummy_event).from_json()
 
     assert parsed == {'email': 'email@biomapas.com', 'group_id': 'abc1'}
+
+
+def test_FUNC_from_json_WITH_private_api_body_EXPECT_successfuly_parsed() -> None:
+    """
+    Test that the function can successfully parse json serialized body if it comes from private api.
+
+    :return: No return.
+    """
+    event = {
+        'it': 'is',
+        'the': {'body': [123]},
+        'private_api': True
+    }
+
+    parsed = Body(event).from_json()
+
+    assert parsed == event
