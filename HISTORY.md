@@ -1,5 +1,10 @@
 # Release history
 
+### 3.2.0
+* Add epic validation!
+* Add `ValueValidator` for basic validation.
+* Add `ValueValidatorPreset` for convenient validation.
+
 ### 3.1.0
 * Extract api key from lambda event.
 * Extract body from lambda event.
