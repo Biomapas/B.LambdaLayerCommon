@@ -1,5 +1,8 @@
 # Release history
 
+### 3.3.0
+* Allow access of the value within validators.
+
 ### 3.2.0
 * Add epic validation!
 * Add `ValueValidator` for basic validation.

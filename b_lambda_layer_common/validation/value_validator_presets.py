@@ -8,6 +8,10 @@ class ValueValidatorPresets:
         self.__value = value
         self.__validator = ValueValidator(value)
 
+    @property
+    def value(self):
+        return self.__value
+
     def is_username(self) -> ValueValidator:
         return (
             self.__validator

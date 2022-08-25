@@ -7,6 +7,10 @@ class ValueValidator:
     def __init__(self, value: Any):
         self.__value = value
 
+    @property
+    def value(self):
+        return self.__value
+
     def not_null(self) -> 'ValueValidator':
         if self.__value is None:
             raise ValueError(f'Value "{self.__value}" can not be null.')
