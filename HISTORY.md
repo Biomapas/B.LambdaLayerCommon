@@ -3,6 +3,8 @@
 ### 4.0.0
 * Deprecate lambda layer functionality. Now this is a simple python lib with common AWS-related functionality.
   Use https://github.com/Biomapas/B.CfnLambdaLayer to create lambda layers.
+* Remove `DynamoDb` & `PynamoDb` functionality from this code. It has been moved and improved. 
+  Find everything here: https://github.com/Biomapas/B.DynamoDbCommon. 
 
 ### 3.3.0
 * Allow access of the value within validators.
