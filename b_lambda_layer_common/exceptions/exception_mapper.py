@@ -13,6 +13,8 @@ from b_lambda_layer_common.exceptions.container.misconfigured_error import Misco
 from b_lambda_layer_common.exceptions.container.not_found_error import NotFoundError
 from b_lambda_layer_common.exceptions.container.not_reached_error import NotReachedError
 from b_lambda_layer_common.exceptions.container.unauthorized_error import UnauthorizedError
+from b_lambda_layer_common.exceptions.container.database_error import DatabaseError
+from b_lambda_layer_common.exceptions.container.malformed_value_error import MalformedValueError
 from b_lambda_layer_common.exceptions.http_exception import HttpException
 
 logger = logging.getLogger(__name__)
@@ -31,7 +33,9 @@ class ExceptionMapper:
         MisconfiguredError.identifier(): MisconfiguredError,
         NotFoundError.identifier(): NotFoundError,
         NotReachedError.identifier(): NotReachedError,
-        UnauthorizedError.identifier(): UnauthorizedError
+        UnauthorizedError.identifier(): UnauthorizedError,
+        DatabaseError.identifier(): DatabaseError,
+        MalformedValueError.identifier(): MalformedValueError
     }
 
     @staticmethod

@@ -1,5 +1,8 @@
 # Release history
 
+### 4.2.0
+* Add more custom `BException` exceptions.
+
 ### 4.1.0
 * Add ability to specify custom exception when performing value validation.
 
