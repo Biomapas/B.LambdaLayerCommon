@@ -1,5 +1,8 @@
 # Release history
 
+### 4.1.0
+* Add ability to specify custom exception when performing value validation.
+
 ### 4.0.0
 * Deprecate lambda layer functionality. Now this is a simple python lib with common AWS-related functionality.
   Use https://github.com/Biomapas/B.CfnLambdaLayer to create lambda layers.

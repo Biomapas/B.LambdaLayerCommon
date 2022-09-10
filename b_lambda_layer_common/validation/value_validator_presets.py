@@ -1,21 +1,15 @@
-from typing import Any
+from typing import Any, Optional
 
 from b_lambda_layer_common.validation.value_validator import ValueValidator
 
 
-class ValueValidatorPresets:
-    def __init__(self, value: Any):
-        self.__value = value
-        self.__validator = ValueValidator(value)
+class ValueValidatorPresets(ValueValidator):
+    def __init__(self, value: Any, custom_exception: Optional[Exception] = None):
+        super().__init__(value, custom_exception)
 
-    @property
-    def value(self):
-        return self.__value
-
-    def is_username(self) -> ValueValidator:
+    def is_username(self) -> 'ValueValidatorPresets':
         return (
-            self.__validator
-                .not_null()
+            self.not_null()
                 .is_str()
                 .not_empty()
                 .is_alphanumeric()
@@ -23,10 +17,9 @@ class ValueValidatorPresets:
                 .max_len(100)
         )
 
-    def is_password(self) -> ValueValidator:
+    def is_password(self) -> 'ValueValidatorPresets':
         return (
-            self.__validator
-                .not_null()
+            self.not_null()
                 .is_str()
                 .not_empty()
                 .min_len(8)
@@ -37,20 +30,18 @@ class ValueValidatorPresets:
                 .contains_uppercase()
         )
 
-    def is_valid_str(self) -> ValueValidator:
+    def is_valid_str(self) -> 'ValueValidatorPresets':
         return (
-            self.__validator
-                .not_null()
+            self.not_null()
                 .is_str()
                 .not_empty()
                 .min_len(1)
                 .max_len(100)
         )
 
-    def is_name(self) -> ValueValidator:
+    def is_name(self) -> 'ValueValidatorPresets':
         return (
-            self.__validator
-                .not_null()
+            self.not_null()
                 .is_str()
                 .not_empty()
                 .alpha_only()
@@ -58,8 +49,8 @@ class ValueValidatorPresets:
                 .max_len(100)
         )
 
-    def is_list_of_valid_strings(self) -> ValueValidator:
-        self.__validator.is_list_of_strings()
-        for item in self.__value:
+    def is_list_of_valid_strings(self) -> 'ValueValidatorPresets':
+        self.is_list_of_strings()
+        for item in self.value:
             ValueValidatorPresets(item).is_valid_str()
-        return self.__validator
+        return self

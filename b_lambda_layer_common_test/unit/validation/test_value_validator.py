@@ -1,6 +1,28 @@
 import pytest
 
+from b_lambda_layer_common.exceptions.container.internal_error import InternalError
+from b_lambda_layer_common.exceptions.container.malformed_permission_error import MalformedPermissionError
 from b_lambda_layer_common.validation.value_validator import ValueValidator
+
+
+@pytest.mark.parametrize(
+    "custom_exception,expected_exception",
+    [
+        (None, ValueError),
+        (ValueError, ValueError),
+        (Exception, Exception),
+        (MalformedPermissionError, MalformedPermissionError),
+        (InternalError, InternalError)
+    ]
+)
+def test_FUNC_any_function_WITH_custom_exceptions_EXPECT_custom_exceptions_raised(custom_exception, expected_exception) -> None:
+    """
+    Check whether custom exceptions work.
+
+    :return: No return.
+    """
+    with pytest.raises(expected_exception):
+        ValueValidator(None, custom_exception=custom_exception).not_null()
 
 
 @pytest.mark.parametrize(
@@ -79,6 +101,7 @@ def test_FUNC_is_int_WITH_various_inputs_EXPECT_appropriate_response(value, exce
         exception_raised = True
 
     assert exception_raised == exception
+
 
 @pytest.mark.parametrize(
     "value,exception",
