@@ -1,5 +1,8 @@
 # Release history
 
+### 4.2.2
+* Make `MalformedPermissionErorr` inherit straight from `HttpException`.
+
 ### 4.2.1
 * Typehint fixes.
 

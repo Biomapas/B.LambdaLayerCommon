@@ -1,9 +1,9 @@
 from typing import Optional
 
-from b_lambda_layer_common.exceptions.container.malformed_value_error import MalformedValueError
+from b_lambda_layer_common.exceptions.http_exception import HttpException
 
 
-class MalformedPermissionError(MalformedValueError):
+class MalformedPermissionError(HttpException):
     def __init__(self, message: Optional[str] = None):
         super().__init__(message)
 
