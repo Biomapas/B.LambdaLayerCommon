@@ -1,7 +1,11 @@
 # Release history
 
+### 4.2.1
+* Typehint fixes.
+
 ### 4.2.0
 * Add more custom `BException` exceptions.
+* 420 hehe...
 
 ### 4.1.0
 * Add ability to specify custom exception when performing value validation.

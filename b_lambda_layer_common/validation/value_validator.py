@@ -1,10 +1,10 @@
 import re
 from datetime import datetime
-from typing import Any, Optional
+from typing import Any, Optional, Type
 
 
 class ValueValidator:
-    def __init__(self, value: Any, custom_exception: Optional[Exception] = None):
+    def __init__(self, value: Any, custom_exception: Optional[Type[Exception]] = None):
         self.value = value
         self.custom_exception = custom_exception or ValueError
 

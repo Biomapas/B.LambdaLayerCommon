@@ -1,10 +1,10 @@
-from typing import Any, Optional
+from typing import Any, Optional, Type
 
 from b_lambda_layer_common.validation.value_validator import ValueValidator
 
 
 class ValueValidatorPresets(ValueValidator):
-    def __init__(self, value: Any, custom_exception: Optional[Exception] = None):
+    def __init__(self, value: Any, custom_exception: Optional[Type[Exception]] = None):
         super().__init__(value, custom_exception)
 
     def is_username(self) -> 'ValueValidatorPresets':
