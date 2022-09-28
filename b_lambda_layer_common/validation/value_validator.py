@@ -133,3 +133,9 @@ class ValueValidator:
         if not any([not char.isalnum() for char in self.value]):
             raise self.custom_exception(f'Value "{self.value}" does not contain special characters.')
         return self
+
+    def not_contains_whitespace(self):
+        self.is_str()
+        if any([char.isspace() for char in self.value]):
+            raise self.custom_exception(f'Value "{self.value}" can not contain whitespaces.')
+        return self
