@@ -1,5 +1,9 @@
 # Release history
 
+### 4.3.0
+* Improve `ValueValidator` by adding `not_contains_whitespace` method.
+* Make `ValueValidatorPresets` more flexible.
+
 ### 4.2.2
 * Make `MalformedPermissionErorr` inherit straight from `HttpException`.
 

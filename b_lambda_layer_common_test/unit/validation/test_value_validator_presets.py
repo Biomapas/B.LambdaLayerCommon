@@ -9,9 +9,10 @@ from b_lambda_layer_common.validation.value_validator_presets import ValueValida
         (None, True),
         ('', True),
         (object(), True),
-        ('bob1', True),
+        ('bob1', False),
+        ('bob 1', True),
         ('bob' * 50, True),
-        ('HaX@R', True),
+        ('HaX@R', False),
         ('Laimonas123', False),
     ]
 )
@@ -92,7 +93,7 @@ def test_FUNC_is_valid_str_WITH_various_inputs_EXPECT_appropriate_response(value
         (None, True),
         ('', True),
         (object(), True),
-        ('bob1', True),
+        ('bob1', False),
         ('bob', False)
     ]
 )

@@ -577,3 +577,28 @@ def test_FUNC_contains_special_WITH_various_inputs_EXPECT_appropriate_response(v
         exception_raised = True
 
     assert exception_raised == exception
+
+
+@pytest.mark.parametrize(
+    "value,exception",
+    [
+        ('', False),
+        ('bob', False),
+        ('bob ', True),
+        (' ', True)
+    ]
+)
+def test_FUNC_not_contains_whitespace_WITH_various_inputs_EXPECT_appropriate_response(value, exception) -> None:
+    """
+    Check whether the validation works.
+
+    :return: No return.
+    """
+    exception_raised = False
+
+    try:
+        ValueValidator(value).not_contains_whitespace()
+    except ValueError:
+        exception_raised = True
+
+    assert exception_raised == exception
