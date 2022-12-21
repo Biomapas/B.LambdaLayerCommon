@@ -1,5 +1,8 @@
 # Release history
 
+### 4.4.0
+* Add decorator `remove_header` removing desired headers from API Gateway integration lambda event.
+
 ### 4.3.0
 * Improve `ValueValidator` by adding `not_contains_whitespace` method.
 * Make `ValueValidatorPresets` more flexible.
