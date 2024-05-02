@@ -15,11 +15,14 @@ class CognitoAccessToken:
         :param event: Lambda event.
         """
         try:
-            self.__auth_token = event['headers']['authorization']
+            request_context = event.get('requestContext', {})
+
+            # The authentication token can be located either in the request headers or in the context.
+            self.__auth_token = event.get('headers', {}).get('authorization') or request_context['authorizer']['auth_token']
 
             # If JWT claims are not located in event.requestContext.authorizer.claims
             # they could be found in event.requestContext.authorizer instead.
-            self.__claims = event['requestContext']['authorizer']['claims'] or event['requestContext']['authorizer']
+            self.__claims = request_context.get('authorizer', {}).get('claims') or request_context['authorizer']
 
             assert self.token_use == 'access'
         except (KeyError, AssertionError) as ex:
