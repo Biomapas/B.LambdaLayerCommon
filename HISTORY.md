@@ -1,5 +1,9 @@
 # Release history
 
+### 4.5.0
+* Update of the `CognitoAccessToken` class to parse authentication token either from the request headers or 
+from the request context.
+
 ### 4.4.0
 * Add decorator `remove_header` removing desired headers from API Gateway integration lambda event.
 
